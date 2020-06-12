@@ -4,8 +4,9 @@ import { useDocumentTitle } from 'hooks';
 import { Page } from 'components';
 
 const Invoicing = () => {
-  useDocumentTitle('Invoicing');
-  return <Page>invoicing yo</Page>;
+  const title = 'Invoicing';
+  useDocumentTitle(title);
+  return <Page title={title}>invoicing yo</Page>;
 };
 
 export default Invoicing;

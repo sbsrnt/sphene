@@ -76,6 +76,8 @@
             "^(test-helpers)(/.*|$)",
             "^(types)(/.*|$)",
             "^(hooks)(/.*|$)",
+            "^(theme)(/.*|$)",
+            "^(context-providers)(/.*|$)",
             "^(components)(/.*|$)",
             "^(features)(/.*|$)",
             "^[^.]"

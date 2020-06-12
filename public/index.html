@@ -14,7 +14,7 @@
     <title>Sphene</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined">
     <style>
       * {
         margin: 0;
@@ -30,6 +30,7 @@
         font-family:  'Roboto', sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        background: #212121;
       }
 
       #menu-bar {
@@ -37,7 +38,8 @@
         justify-content: space-between;
         align-items: center;
         height: 30px;
-        background: #34475a;
+        background: #212121;
+        /*background: hsl(294,72%,25%);*/
         -webkit-app-region: drag;
       }
 
@@ -60,7 +62,7 @@
         align-items: center;
       }
 
-      #menu-bar h5 {
+      #menu-bar .left {
         padding-left: 1em;
         color: white;
       }
@@ -104,7 +106,7 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="menu-bar">
       <div class="left">
-        <h5>Sphene</h5>
+        <p>Sphene</p>
       </div>
       <div class="right">
         <button class="menubar-btn" id="minimize-btn"><i class="material-icons remove"></i></button>
@@ -113,6 +115,5 @@
       </div>
     </div>
     <div id="root" class="d-flex"></div>
-    <script src="./renderer.js"></script>
   </body>
 </html>

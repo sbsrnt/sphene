@@ -1,44 +1,71 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
-import { useAuth } from 'hooks';
+import { ThemeProvider } from 'context-providers';
 
-const List = styled.ul`
+import type { ListItem as ListItemType } from './ListItem';
+import ListItem from './ListItem';
+
+const Nav = styled.nav`
+  border-top: 1px solid ${(props) => props.theme.bg.tertiary};
+  padding-top: 10px;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: ${(props) => props.theme.bg.primary};
 `;
 
-const Anchor = styled(Link)`
-  width: 100%;
-  padding: 10px;
-  display: block;
-
-  &:active,
-  &:hover,
-  &:visited,
-  &:link {
-    color: white;
-  }
+const List = styled(motion.ul)`
+  height: 100%;
 `;
 
-const ListItem = styled.li``;
+const list = {
+  visible: {
+    opacity: 1,
+    transition: {
+      when: 'beforeChildren',
+      staggerChildren: 0.1,
+    },
+  },
+  hidden: {
+    opacity: 0,
+    transition: {
+      when: 'afterChildren',
+    },
+  },
+};
+
+const features = [
+  {
+    path: '/invoicing',
+    icon: 'request_quote',
+    label: 'Invoicing',
+  },
+  {
+    path: '/notifications',
+    icon: 'add_alert',
+    label: 'Notifications',
+  },
+];
 
 const NavSidebar = () => {
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth();
+  // const { isAuthenticated, loginWithRedirect, logout } = useAuth();
 
   return (
-    <List>
-      <Anchor to="/">Sphene</Anchor>
-      <ListItem onClick={isAuthenticated ? logout : loginWithRedirect}>
-        <Anchor to={isAuthenticated ? '/logout' : '/login'}>
-          {isAuthenticated ? 'logout' : 'login'}
-        </Anchor>
-      </ListItem>
-      <ListItem>
-        <Anchor to="/invoicing">Invoicing</Anchor>
-      </ListItem>
-    </List>
+    <ThemeProvider>
+      <Nav>
+        <List variants={list} initial="hidden" animate="visible">
+          {/*<ListItem onClick={isAuthenticated ? logout : loginWithRedirect}>*/}
+          {/*  <Link to={isAuthenticated ? '/logout' : '/login'}>*/}
+          {/*    <i className="material-icons">login</i>*/}
+          {/*    <span> {isAuthenticated ? 'logout' : 'login'}</span>*/}
+          {/*  </Link>*/}
+          {/*</ListItem>*/}
+          {features.map((f: ListItemType, i: number) => (
+            <ListItem key={`nav_${i}`} {...f} />
+          ))}
+        </List>
+      </Nav>
+    </ThemeProvider>
   );
 };
 
