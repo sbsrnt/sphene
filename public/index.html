@@ -10,36 +10,109 @@
       content="Web site created using create-react-app"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
+    <title>Sphene</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .main-wrapper {
+        overflow: hidden;
+      }
+
+      body {
+        font-family:  'Roboto', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      #menu-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 30px;
+        background: #34475a;
+        -webkit-app-region: drag;
+      }
+
+      #menu-bar > div {
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .menubar-btn {
+        -webkit-app-region: no-drag;
+        height: 100%;
+        padding: 0 10px;
+        border: none;
+        background: transparent;
+        outline: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+      }
+
+      #menu-bar h5 {
+        padding-left: 1em;
+        color: white;
+      }
+
+      .menubar-btn:hover {
+        background: rgba(221, 221, 221, 0.2);
+      }
+
+      #close-btn:hover {
+        background: rgb(255, 0, 0);
+      }
+
+      .menubar-btn i {
+        color: white;
+        font-size: 15px !important;
+      }
+
+      .material-icons {
+        position: relative;
+        display: inline-block;
+      }
+
+      .remove:after {
+        content: 'remove'
+      }
+
+      .crop_square:after {
+        content: 'crop_square'
+      }
+
+      .filter_none:after {
+        content: 'filter_none'
+      }
+
+      .close:after {
+        content: 'close'
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    <div id="menu-bar">
+      <div class="left">
+        <h5>Sphene</h5>
+      </div>
+      <div class="right">
+        <button class="menubar-btn" id="minimize-btn"><i class="material-icons remove"></i></button>
+        <button class="menubar-btn" id="max-unmax-btn"><i class="minmax material-icons crop_square"></i></button>
+        <button class="menubar-btn" id="close-btn"><i class="material-icons close"></i></button>
+      </div>
+    </div>
+    <div id="root" class="d-flex"></div>
+    <script src="./renderer.js"></script>
   </body>
 </html>

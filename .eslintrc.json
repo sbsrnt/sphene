@@ -75,6 +75,7 @@
             "^(store)(/.*|$)",
             "^(test-helpers)(/.*|$)",
             "^(types)(/.*|$)",
+            "^(hooks)(/.*|$)",
             "^(components)(/.*|$)",
             "^(features)(/.*|$)",
             "^[^.]"

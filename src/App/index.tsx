@@ -1,21 +1,39 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import styled from 'styled-components';
 
-import logo from '../logo.svg';
-import NavBar from '../Navbar';
+import { useAuth, useDocumentTitle } from 'hooks';
+import { NavSidebar, NavTopbar, PageLoader } from 'components';
+import { Invoicing } from 'features';
 
-import './App.css';
+const Container = styled.div`
+  display: grid;
+  grid-template-rows: 50px 1fr;
+  grid-template-columns: 200px calc(100vw - 200px);
+`;
 
 function App() {
+  useDocumentTitle('Sphene');
+  const { loading = true } = useAuth();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <NavBar />
-      </header>
-    </div>
+    <>
+      {!loading && (
+        <Router>
+          <Container>
+            <NavTopbar />
+            <NavSidebar />
+            <Switch>
+              <Route exact path="/">
+                foo
+              </Route>
+              <Route exact path="/invoicing" component={Invoicing} />
+            </Switch>
+          </Container>
+        </Router>
+      )}
+      <PageLoader visible={loading} />
+    </>
   );
 }
 
