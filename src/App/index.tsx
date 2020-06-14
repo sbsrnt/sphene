@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { useAuth, useDocumentTitle } from 'hooks';
 import { NavSidebar, PageLoader } from 'components';
-import { Invoicing } from 'features';
+import { Invoicing, Reminders } from 'features';
 
 const Container = styled.div`
   display: grid;
@@ -26,6 +26,7 @@ function App() {
                 foo
               </Route>
               <Route exact path="/invoicing" component={Invoicing} />
+              <Route exact path="/reminders" component={Reminders} />
             </Switch>
           </Container>
         </Router>

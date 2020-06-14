@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 import { ThemeProvider } from 'context-providers';
+import { NAV_FEATURES } from 'features';
 
 import type { ListItem as ListItemType } from './ListItem';
 import ListItem from './ListItem';
@@ -18,7 +19,7 @@ const List = styled(motion.ul)`
   height: 100%;
 `;
 
-const list = {
+const variants = {
   visible: {
     opacity: 1,
     transition: {
@@ -34,33 +35,20 @@ const list = {
   },
 };
 
-const features = [
-  {
-    path: '/invoicing',
-    icon: 'request_quote',
-    label: 'Invoicing',
-  },
-  {
-    path: '/notifications',
-    icon: 'add_alert',
-    label: 'Notifications',
-  },
-];
-
 const NavSidebar = () => {
   // const { isAuthenticated, loginWithRedirect, logout } = useAuth();
 
   return (
     <ThemeProvider>
       <Nav>
-        <List variants={list} initial="hidden" animate="visible">
+        <List variants={variants} initial="hidden" animate="visible">
           {/*<ListItem onClick={isAuthenticated ? logout : loginWithRedirect}>*/}
           {/*  <Link to={isAuthenticated ? '/logout' : '/login'}>*/}
           {/*    <i className="material-icons">login</i>*/}
           {/*    <span> {isAuthenticated ? 'logout' : 'login'}</span>*/}
           {/*  </Link>*/}
           {/*</ListItem>*/}
-          {features.map((f: ListItemType, i: number) => (
+          {NAV_FEATURES.map((f: ListItemType, i: number) => (
             <ListItem key={`nav_${i}`} {...f} />
           ))}
         </List>

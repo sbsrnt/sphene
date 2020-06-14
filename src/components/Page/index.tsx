@@ -3,9 +3,12 @@ import styled from 'styled-components';
 
 import { ThemeProvider } from 'context-providers';
 
+import PageActions from './PageActions';
+
 type Page = {
   children: ReactNode;
   title: string;
+  actions?: ReactNode;
 };
 
 const StyledPage = styled.div`
@@ -14,17 +17,27 @@ const StyledPage = styled.div`
   width: 100%;
   padding: 1em;
   background: ${(props) => props.theme.bg.secondary};
+  color: ${(props) => props.theme.colors.primary};
 
   h2 {
     color: ${(props) => props.theme.colors.primary};
-    margin-bottom: 0.5em;
   }
 `;
 
-const Page: FC<Page> = ({ children, title }) => (
+const HeaderWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5em;
+  align-items: center;
+`;
+
+const Page: FC<Page> = ({ children, title, actions }) => (
   <ThemeProvider>
     <StyledPage>
-      <h2>{title}</h2>
+      <HeaderWrapper>
+        <h2>{title}</h2>
+        {!!actions && <PageActions>{actions}</PageActions>}
+      </HeaderWrapper>
       {children}
     </StyledPage>
   </ThemeProvider>

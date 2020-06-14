@@ -1,4 +1,8 @@
 const {
+  ipcRenderer,
+  shell: { openExternal },
+} = require('electron');
+const {
   closeWindow,
   isWindowMaximized,
   maximizeWindow,
@@ -14,6 +18,8 @@ window.addEventListener('DOMContentLoaded', () => {
   window.maxUnmaxWindow = maxUnmaxWindow;
   window.isWindowMaximized = isWindowMaximized;
   window.closeWindow = closeWindow;
+  window.ipcRenderer = ipcRenderer;
+  window.shellOpenExternal = openExternal;
 
   const minimizeButton = document.getElementById('minimize-btn');
   const maxUnmaxButton = document.getElementById('max-unmax-btn');

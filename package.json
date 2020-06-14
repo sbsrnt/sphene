@@ -32,6 +32,7 @@
     "@types/history": "^4.7.6",
     "@types/jest": "25.2.3",
     "@types/node": "14.0.6",
+    "@types/node-notifier": "^6.0.1",
     "@types/react": "16.9.35",
     "@types/react-dom": "16.9.8",
     "@types/react-router-dom": "^5.1.5",
@@ -43,8 +44,10 @@
     "eslint": "^6.6.0",
     "framer-motion": "^1.11.0",
     "history": "^4.10.1",
+    "node-notifier": "^7.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-dropzone": "^11.0.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "styled-components": "^5.1.1",
@@ -55,12 +58,13 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "postinstall": "electron-builder install-app-deps",
-    "electron:dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && tsc -p electron -w\" \"wait-on http://localhost:3000 && tsc -p electron && electron .\"",
-    "electron:windev": "concurrently \"SET BROWSER=none && yarn start\" \"wait-on http://localhost:3000 && -p electron -w\" \"wait-on http://localhost:3000 && electron .\"",
-    "electron:build": "yarn build && -p electron && electron-builder",
+    "electron:dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && tsc -p build/electron -w\" \"wait-on http://localhost:3000 && tsc -p electron && electron .\"",
+    "electron:windev": "concurrently \"SET BROWSER=none && yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "electron:build": "yarn build && electron-builder",
     "eject": "react-scripts eject"
   },
   "build": {
+    "appId": "sphene",
     "extends": null,
     "files": [
       "build/**/*"
