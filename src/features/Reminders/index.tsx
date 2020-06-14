@@ -1,17 +1,20 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 
-import { Button, Page } from 'components';
+import { Button, Modal, Page } from 'components';
 
-const Actions = () => (
+const Actions = ({ toggleModal }: { toggleModal: () => void }) => (
   <>
-    <Button as={Link} to="settings" variant="success">
+    <Button variant="success" onClick={toggleModal}>
       New Reminder
     </Button>
   </>
 );
 
 const Reminders = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleModal = () => setIsOpen(!isOpen);
+  const handleSubmit = () => console.log('submitted');
+
   const click = () => {
     const s = new Notification('XD', {
       body: 'A TY CO, DALEJ 3K RIO',
@@ -22,8 +25,11 @@ const Reminders = () => {
   };
 
   return (
-    <Page title="Reminders" actions={<Actions />}>
+    <Page title="Reminders" actions={<Actions toggleModal={toggleModal} />}>
       <div onClick={click}>clickme</div>
+      <Modal isOpen={isOpen} toggleModal={toggleModal} title="New Reminder" onSubmit={handleSubmit}>
+        XDDDDDDDDD
+      </Modal>
     </Page>
   );
 };

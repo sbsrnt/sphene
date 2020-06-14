@@ -21,25 +21,6 @@ const List = styled(motion.ul)`
   height: 100%;
 `;
 
-const About = styled.div`
-  border-top: 1px solid ${(props) => props.theme.bg.tertiary};
-  display: flex;
-  flex-direction: column;
-
-  li {
-    height: 100%;
-    display: flex;
-    align-items: baseline;
-  }
-`;
-
-const AppVer = styled.div`
-  font-size: 12px;
-  text-align: center;
-  padding-bottom: 0.5em;
-  color: ${(props) => props.theme.bg.tertiary};
-`;
-
 const variants = {
   visible: {
     opacity: 1,
@@ -73,10 +54,6 @@ const NavSidebar = () => {
             <ListItem key={`nav_${i}`} {...f} />
           ))}
         </List>
-        <About>
-          <ListItem path="/logout" icon="power_settings_new" label="Logout" />
-          <AppVer>app ver.{process.env.REACT_APP_VERSION}</AppVer>
-        </About>
       </Nav>
     </ThemeProvider>
   );

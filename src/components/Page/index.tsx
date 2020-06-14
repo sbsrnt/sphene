@@ -19,7 +19,7 @@ const StyledPage = styled.div`
   background: ${(props) => props.theme.bg.secondary};
   color: ${(props) => props.theme.colors.primary};
 
-  h2 {
+  > h2 {
     color: ${(props) => props.theme.colors.primary};
   }
 `;

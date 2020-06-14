@@ -1,12 +1,18 @@
 const light = {
   button: {
     border: 0,
+    none: {
+      color: '#383838',
+      background: 'transparent',
+    },
+    bordered: {
+      color: '#383838',
+      border: '1px solid #383838',
+      background: '#FFFFFF',
+    },
     default: {
-      background: 'blue',
+      background: '#283593',
       color: '#FFFFFF',
-      '&:hover': {
-        background: 'navyblue',
-      },
     },
     success: {
       background: '#00796b',

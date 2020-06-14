@@ -16,3 +16,8 @@ declare global {
     shellOpenExternal: (path: string) => void;
   }
 }
+
+interface RefObject<T> {
+  // immutable
+  readonly current: T | null;
+}

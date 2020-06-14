@@ -6,8 +6,8 @@ const contextMenu = require('electron-context-menu');
 
 function createWindow() {
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1024,
+    height: 738,
     frame: false,
     backgroundColor: '#212121',
     webPreferences: {
