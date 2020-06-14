@@ -53,7 +53,6 @@
       .menubar-btn {
         -webkit-app-region: no-drag;
         height: 100%;
-        padding: 0 1em;
         border: none;
         background: transparent;
         outline: none;
@@ -85,6 +84,10 @@
         display: inline-block;
       }
 
+      .login:after {
+        content: 'login'
+      }
+
       .remove:after {
         content: 'remove'
       }
@@ -100,6 +103,49 @@
       .close:after {
         content: 'close'
       }
+
+      /* Tooltip - container */
+      .main-tooltip {
+        position: relative;
+        display: flex;
+        height: 100%;
+      }
+
+      .main-tooltip button {
+        padding: 0 1em;
+      }
+
+      /* Tooltip - text */
+      .main-tooltip .tooltiptext {
+        visibility: hidden;
+        background-color: #383838;
+        color: #fff;
+        border: 1px solid #fff;
+        text-align: center;
+        padding: 5px 10px;
+
+        /* Position the tooltip text */
+        position: absolute;
+        z-index: 1;
+        top: calc(100% + 5px);
+        left: 0;
+        transition: opacity 0s linear 1s;
+        font-size: 12px;
+        box-shadow: 0 0 5px black;
+
+      /* Fade in tooltip */
+        opacity: 0;
+      }
+
+      .main-tooltip:last-child .tooltiptext {
+        margin-left: -12px;
+      }
+
+      /* Tooltip - show on hover*/
+      .main-tooltip:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+      }
     </style>
   </head>
   <body>
@@ -109,9 +155,30 @@
         <p>Sphene</p>
       </div>
       <div class="right">
-        <button class="menubar-btn" id="minimize-btn"><i class="material-icons remove"></i></button>
-        <button class="menubar-btn" id="max-unmax-btn"><i class="minmax material-icons crop_square"></i></button>
-        <button class="menubar-btn" id="close-btn"><i class="material-icons close"></i></button>
+        <div class="main-tooltip">
+          <button class="menubar-btn" id="minimize-btn">
+            <i class="material-icons login"></i>
+            <span class="tooltiptext">Logout</span>
+          </button>
+        </div>
+        <div class="main-tooltip">
+          <button class="menubar-btn" id="minimize-btn">
+            <i class="material-icons remove"></i>
+            <span class="tooltiptext">Minimize</span>
+          </button>
+        </div>
+        <div class="main-tooltip">
+          <button class="menubar-btn" id="max-unmax-btn">
+            <i class="minmax material-icons crop_square"></i>
+            <span class="tooltiptext">Maximize</span>
+          </button>
+        </div>
+        <div class="main-tooltip">
+          <button class="menubar-btn" id="close-btn">
+            <i class="material-icons close"></i>
+            <span class="tooltiptext">Close</span>
+          </button>
+        </div>
       </div>
     </div>
     <div id="root" class="d-flex"></div>
