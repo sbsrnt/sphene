@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
 type Variants = 'none' | 'bordered' | 'default' | 'success';
@@ -8,7 +8,7 @@ type Button = {
   as?: any;
   to?: string;
   variant?: Variants;
-  onClick: () => void;
+  onClick?: () => void;
 };
 
 const StyledButton = styled.div<{ variant: Variants }>`
@@ -19,7 +19,7 @@ const StyledButton = styled.div<{ variant: Variants }>`
   ${(props) => props.theme.button[props.variant]}
 `;
 
-const Button: FC<Button> = ({ as = 'button', variant = 'default', children, ...props }) => {
+const Button = ({ as = 'button', variant = 'default', children, ...props }: Button) => {
   return (
     <StyledButton as={as} variant={variant} {...props}>
       {children}

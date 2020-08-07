@@ -1,12 +1,12 @@
-import React, { FC, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 import { backdrop, modal } from './animations';
 import Backdrop from './Backdrop';
-import ModalActions from './ModalActions';
-import ModalBody from './ModalBody';
+import ModalActions, { ModalActions as ModalActionsType } from './ModalActions';
+import ModalBody, { ModalBody as ModalBodyType } from './ModalBody';
 import ModalHeader from './ModalHeader';
 
 type Modal = {
@@ -14,7 +14,8 @@ type Modal = {
   toggleModal: () => void;
   title: string;
   children: ReactNode;
-  onSubmit: () => void;
+  Body?: ModalBodyType;
+  Actions?: ModalActionsType;
 };
 
 const ModalWrapper = styled(motion.div)`
@@ -40,7 +41,7 @@ const StyledModal = styled(motion.div)`
   min-width: 400px;
 `;
 
-const Modal: FC<Modal> = ({ isOpen = false, toggleModal, title, children, onSubmit }) => {
+const Modal = ({ isOpen = false, toggleModal, title, children }: Modal) => {
   return (
     <AnimatePresence exitBeforeEnter>
       {isOpen && (
@@ -48,13 +49,15 @@ const Modal: FC<Modal> = ({ isOpen = false, toggleModal, title, children, onSubm
           <Backdrop onClick={toggleModal} />
           <StyledModal variants={modal}>
             <ModalHeader>{title}</ModalHeader>
-            <ModalBody>{children}</ModalBody>
-            <ModalActions toggleModal={toggleModal} onSubmit={onSubmit} />
+            {children}
           </StyledModal>
         </ModalWrapper>
       )}
     </AnimatePresence>
   );
 };
+
+Modal.Body = ModalBody;
+Modal.Actions = ModalActions;
 
 export default Modal;

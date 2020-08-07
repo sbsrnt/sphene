@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
-import { Button, Modal, Page } from 'components';
+import { Button, Page } from 'components';
+
+import NewReminderModal from './NewReminderModal';
 
 const Actions = ({ toggleModal }: { toggleModal: () => void }) => (
   <>
@@ -11,25 +13,23 @@ const Actions = ({ toggleModal }: { toggleModal: () => void }) => (
 );
 
 const Reminders = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleModal = () => setIsOpen(!isOpen);
-  const handleSubmit = () => console.log('submitted');
+  const [isOpen, setIsOpen] = useState(true);
+
+  const toggleModal = () => setIsOpen((isOpen) => !isOpen);
 
   const click = () => {
     const s = new Notification('XD', {
       body: 'A TY CO, DALEJ 3K RIO',
+      requireInteraction: true,
     });
     console.log(s);
     // s.onclick = () => ipcRenderer.send('notify', (e: any) => console.log(e));
     s.onclick = () => window.shellOpenExternal('https://google.com');
   };
-
   return (
     <Page title="Reminders" actions={<Actions toggleModal={toggleModal} />}>
       <div onClick={click}>clickme</div>
-      <Modal isOpen={isOpen} toggleModal={toggleModal} title="New Reminder" onSubmit={handleSubmit}>
-        XDDDDDDDDD
-      </Modal>
+      <NewReminderModal toggleModal={toggleModal} isOpen={isOpen} />
     </Page>
   );
 };

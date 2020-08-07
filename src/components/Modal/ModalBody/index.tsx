@@ -1,11 +1,16 @@
 import React, { FC, ReactNode } from 'react';
+import styled from 'styled-components';
 
-type ModalBody = {
+export type ModalBody = {
   children: ReactNode;
 };
 
+const Body = styled.div`
+  margin-bottom: 1em;
+`;
+
 const ModalBody: FC<ModalBody> = ({ children }) => {
-  return <div>{children}</div>;
+  return <Body>{children}</Body>;
 };
 
 export default ModalBody;

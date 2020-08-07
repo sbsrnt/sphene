@@ -1,33 +1,53 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import axios from 'axios';
+import { omit } from 'lodash';
+import { applyMiddleware, createStore } from 'redux';
+import axiosMiddleware from 'redux-axios-middleware';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { AuthProvider } from 'context-providers';
 
-import App from './App';
+import App from './app';
+import rootReducer from './app/rootReducer';
 import * as serviceWorker from './serviceWorker';
-import history from './utils/history';
 
 import './index.css';
 
-const config = {
-  domain: 'dev-tm63t6rj.eu.auth0.com',
-  clientId: 'yhhaRAt9eutJivCcyXuYhmV1pH394Q42',
+const client = axios.create({
+  baseURL: 'http://localhost:3000',
+  responseType: 'json',
+  headers: {
+    'Content-Type': 'application/json;charset=utf-8',
+  },
+});
+
+const axiosMiddlewareConfig = {
+  // interceptors: {
+  //   response: [
+  //     {
+  //       error: function (_, error) {
+  //         console.log("res", error.response.data);
+  //         return Promise.reject({message: error.response.data});
+  //       },
+  //     },
+  //   ],
+  // },
 };
 
-const onRedirectCallback = (appState) => {
-  history.push(appState && appState.targetUrl ? appState.targetUrl : window.location.pathname);
-};
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(axiosMiddleware(client, axiosMiddlewareConfig)))
+);
 
 ReactDOM.render(
   <React.StrictMode>
-    <AuthProvider
-      domain={config.domain}
-      client_id={config.clientId}
-      redirect_uri={window.location.origin}
-      onRedirectCallback={onRedirectCallback}
-    >
-      <App />
-    </AuthProvider>
+    <Provider store={store}>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

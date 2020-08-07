@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
 import { ThemeProvider } from 'context-providers';
@@ -31,7 +31,7 @@ const HeaderWrapper = styled.div`
   align-items: center;
 `;
 
-const Page: FC<Page> = ({ children, title, actions }) => (
+const Page = ({ children, title, actions }: Page) => (
   <ThemeProvider>
     <StyledPage>
       <HeaderWrapper>
