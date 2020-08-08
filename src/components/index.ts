@@ -12,3 +12,6 @@ export { default as DatePicker } from './DatePicker';
 export { default as FormField } from './FormField';
 export { default as FormTodo } from './FormTodo';
 export { default as UserRoute } from './routes/UserRoute';
+export { default as Row } from './Grid/Row';
+export { default as Column } from './Grid/Column';
+export { default as Header } from './Header';
