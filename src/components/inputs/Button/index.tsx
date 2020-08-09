@@ -1,6 +1,8 @@
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
+import { Bold } from 'components';
+
 type Variants = 'none' | 'bordered' | 'default' | 'success';
 type Sizes = 'large' | 'medium' | 'small';
 
@@ -21,6 +23,7 @@ const StyledButton = styled.div<{ variant: Variants; size: Sizes }>`
   min-width: 120px;
   outline: none;
   opacity: ${(props: any) => props.disabled && '50%'};
+  border-radius: 4px;
   ${(props) => props.theme.button};
   ${(props) => props.theme.button.variant[props.variant]};
   ${(props) => props.theme.button.size[props.size]};
@@ -35,7 +38,7 @@ const Button = ({
 }: Button) => {
   return (
     <StyledButton as={as} variant={variant} size={size} {...props}>
-      {children}
+      <Bold>{children}</Bold>
     </StyledButton>
   );
 };

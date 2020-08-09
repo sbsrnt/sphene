@@ -3,7 +3,7 @@ import cx from 'classnames';
 import styled from 'styled-components';
 
 type RowProps = {
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
 };
 

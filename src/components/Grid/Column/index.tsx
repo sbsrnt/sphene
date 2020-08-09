@@ -4,7 +4,7 @@ import cx from 'classnames';
 type SizeRange = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
 type RowProps = {
-  children: ReactNode;
+  children?: ReactNode;
   className?: string | null;
   xs?: SizeRange;
   sm?: SizeRange;

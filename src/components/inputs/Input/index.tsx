@@ -3,8 +3,12 @@ import styled from 'styled-components';
 
 const StyledInput = styled.input`
   border: 0;
+  outline: none;
+  padding: 5px;
+  background: none;
   border-bottom: 1px solid ${(props) => props.theme.bg.primary};
-  padding: 5px 0;
+  color: ${(props) => props.theme.bg.primary};
+  font-size: 16px;
 `;
 
 type InputProps = {
@@ -15,6 +19,7 @@ type InputProps = {
   value?: string;
   readOnly?: boolean;
 };
+
 const Input = ({ formRef, ...props }: InputProps) => <StyledInput ref={formRef} {...props} />;
 
 export default Input;

@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 import startOfToday from 'date-fns/startOfToday';
 import styled from 'styled-components';
 
-import { Input } from 'components';
+import { Input } from 'components/index';
 
 const CalendarContainer = styled.div`
   margin-top: 10px;
