@@ -1,2 +1,2 @@
-const FETCH_USER = '[AUTH] FETCH_USER';
-export default FETCH_USER;
+export const SIGN_IN_USER = '[AUTH] SIGN_IN_USER';
+export const SIGN_UP_USER = '[AUTH] SIGN_UP_USER';

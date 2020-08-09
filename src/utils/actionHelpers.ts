@@ -27,8 +27,5 @@ type NestPayload = any;
 
 export const apiSuccessBinder = (payload?: NestPayload): NestPayload => {
   if (!payload) return {};
-
-  const { data } = payload;
-
-  return data;
+  return payload;
 };

@@ -1,5 +1,6 @@
 // Auth
-export { default as Login } from './Auth/Login';
+export { default as SignIn } from './Auth/SignIn';
+export { default as SignUp } from './Auth/SignUp';
 
 export { default as Invoicing } from './Invoicing';
 export { default as Reminders } from './Reminders';

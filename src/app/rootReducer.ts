@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 
-import authReducer from 'features/Auth/reducer';
+import signInReducer from 'features/Auth/SignIn/reducer';
 
 const rootReducer = combineReducers({
-  auth: authReducer,
+  auth: combineReducers({
+    user: signInReducer,
+  }),
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

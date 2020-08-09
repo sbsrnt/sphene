@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import PATHS from 'constants/paths';
 import { ThemeProvider } from 'context-providers';
 import { Column, Row } from 'components';
-import { Login } from 'features';
+import { SignIn, SignUp } from 'features';
 
 const AuthContainer = styled(Row)`
   background: ${(props) => props.theme.colors.gray100};
@@ -58,12 +58,12 @@ const GuestView = () => (
       </GuestContainerLeftColumn>
       <GuestContainerRightColumn xs={6}>
         <Wrapper>
-          <Route exact path={PATHS.HOME} component={Login} />
-          <Route exact path={PATHS.REGISTER} component={Login} />
-          <Route exact path={PATHS.LOGIN} component={Login} />
-          <Route exact path={PATHS.FORGOT_PASSWORD} component={Login} />
-          <Route exact path={PATHS.VERIFY_EMAIL} component={Login} />
-          <Route exact path={PATHS.RESET_PASSWORD_TOKEN} component={Login} />
+          <Route exact path={PATHS.HOME} component={SignIn} />
+          <Route exact path={PATHS.SIGN_UP} component={SignUp} />
+          <Route exact path={PATHS.SIGN_IN} component={SignIn} />
+          <Route exact path={PATHS.FORGOT_PASSWORD} component={SignIn} />
+          <Route exact path={PATHS.VERIFY_EMAIL} component={SignIn} />
+          <Route exact path={PATHS.RESET_PASSWORD_TOKEN} component={SignIn} />
         </Wrapper>
       </GuestContainerRightColumn>
     </AuthContainer>

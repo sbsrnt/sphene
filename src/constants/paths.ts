@@ -9,10 +9,10 @@ export const PATHS = {
   /**
    * Auth
    */
-  LOGIN: '/login',
+  SIGN_IN: '/sign-in',
+  SIGN_UP: '/sign-up',
   FORGOT_PASSWORD: '/forgot-password',
   RESET_PASSWORD: '/reset-password',
-  REGISTER: '/register',
   VERIFY_EMAIL: '/verify/:token',
   RESET_PASSWORD_TOKEN: '/reset-password/:token',
 };

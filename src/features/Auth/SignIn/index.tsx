@@ -6,8 +6,8 @@ import styled from 'styled-components';
 import PATHS from 'constants/paths';
 import { Button, Column, FormField, Input, Link, Row, Sublabel } from 'components';
 
-import { fetchUserRequest } from '../actions';
 import AuthContainer from '../Container';
+import { signInUserRequest } from './actions';
 
 type FormData = {
   email: string;
@@ -33,12 +33,12 @@ const Footer = styled.div`
   justify-content: space-between;
 `;
 
-const Login = () => {
+const SignIn = () => {
   const { handleSubmit, register, errors } = useForm();
   const dispatch = useDispatch();
 
   const onSubmit: SubmitHandler<FormData> = (data: FormData) => {
-    dispatch(fetchUserRequest(data));
+    dispatch(signInUserRequest(data));
   };
 
   return (
@@ -79,7 +79,7 @@ const Login = () => {
       </Form>
       <Footer>
         <Sublabel>Don't have an account?</Sublabel>
-        <Button as={Link} to={PATHS.REGISTER}>
+        <Button as={Link} to={PATHS.SIGN_UP}>
           Create
         </Button>
       </Footer>
@@ -87,4 +87,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignIn;
