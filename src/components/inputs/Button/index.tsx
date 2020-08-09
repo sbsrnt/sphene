@@ -14,9 +14,10 @@ type Button = {
   onClick?: () => void;
   disabled?: boolean;
   size?: Sizes;
+  block?: boolean;
 };
 
-const StyledButton = styled.div<{ variant: Variants; size: Sizes }>`
+const StyledButton = styled.div<{ variant: Variants; size: Sizes; block?: boolean }>`
   padding: 5px 10px;
   transition: all ease 0.4s;
   cursor: pointer;
@@ -24,6 +25,7 @@ const StyledButton = styled.div<{ variant: Variants; size: Sizes }>`
   outline: none;
   opacity: ${(props: any) => props.disabled && '50%'};
   border-radius: 4px;
+  width: ${(props) => (props.block ? '100%' : 'initial')};
   ${(props) => props.theme.button};
   ${(props) => props.theme.button.variant[props.variant]};
   ${(props) => props.theme.button.size[props.size]};
@@ -33,11 +35,12 @@ const Button = ({
   as = 'button',
   variant = 'default',
   size = 'small',
+  block = false,
   children,
   ...props
 }: Button) => {
   return (
-    <StyledButton as={as} variant={variant} size={size} {...props}>
+    <StyledButton as={as} variant={variant} size={size} block={block} {...props}>
       <Bold>{children}</Bold>
     </StyledButton>
   );
