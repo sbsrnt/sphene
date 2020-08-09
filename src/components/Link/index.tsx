@@ -9,6 +9,7 @@ type LinkProps = {
 
 const StyledLink = styled(RouterLink)`
   text-decoration: none;
+  text-align: center;
 
   &:hover {
     text-decoration: underline;

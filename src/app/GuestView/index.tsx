@@ -28,7 +28,7 @@ const GuestContainerRightColumn = styled(Column)`
 
 const Features = styled.div`
   height: 500px;
-  width: 400px;
+  width: 320px;
   margin-right: -0.5em;
   border: 2px solid ${(props) => props.theme.colors.white};
   border-bottom-left-radius: 4px;
@@ -40,7 +40,7 @@ const Features = styled.div`
 const Wrapper = styled.div`
   padding: 2em;
   height: 500px;
-  width: 400px;
+  width: 320px;
   margin-left: -0.5em;
   border: 2px solid ${(props) => props.theme.colors.gray100};
   border-bottom-right-radius: 4px;

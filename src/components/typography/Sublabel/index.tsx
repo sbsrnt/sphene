@@ -7,7 +7,7 @@ type SublabelProps = {
 
 const StyledSublabel = styled.span`
   font-size: ${(props) => props.theme.typography.fontSizes.label};
-  color: ${(props) => props.theme.colors.gray700};
+  color: ${(props) => props.theme.colors.gray900};
 `;
 
 const Sublabel = ({ children, ...props }: SublabelProps) => (

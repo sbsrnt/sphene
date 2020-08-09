@@ -4,9 +4,10 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
 import PATHS from 'constants/paths';
-import { Button, Column, FormField, Header, Input, Link, Row, Sublabel } from 'components';
+import { Button, Column, FormField, Input, Link, Row, Sublabel } from 'components';
 
 import { fetchUserRequest } from '../actions';
+import AuthContainer from '../Container';
 
 type FormData = {
   email: string;
@@ -16,6 +17,10 @@ type FormData = {
 const LoginColumn = styled((props) => <Column {...props} />)`
   display: flex;
   flex-direction: column;
+
+  button {
+    margin-top: 20px;
+  }
 `;
 
 const Form = styled.form`
@@ -24,6 +29,8 @@ const Form = styled.form`
 
 const Footer = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const Login = () => {
@@ -35,8 +42,7 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <Header>Login</Header>
+    <AuthContainer>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Row>
           <Column>
@@ -73,9 +79,11 @@ const Login = () => {
       </Form>
       <Footer>
         <Sublabel>Don't have an account?</Sublabel>
-        <Button>Create</Button>
+        <Button as={Link} to={PATHS.REGISTER}>
+          Create
+        </Button>
       </Footer>
-    </div>
+    </AuthContainer>
   );
 };
 
