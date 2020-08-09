@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledBackdrop = styled.div`
-  background: ${(props) => props.theme.bg.secondary}99;
+  background: ${(props) => props.theme.colors.gray300}99;
   height: 100%;
   width: 100%;
   position: absolute;

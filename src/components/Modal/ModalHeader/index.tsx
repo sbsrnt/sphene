@@ -6,7 +6,7 @@ type ModalHeader = {
 };
 
 const Header = styled.h3`
-  color: ${(props) => props.theme.bg.secondary};
+  color: ${(props) => props.theme.colors.gray300};
   margin-bottom: 1em;
 `;
 

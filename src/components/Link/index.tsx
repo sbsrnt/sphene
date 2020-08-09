@@ -8,7 +8,6 @@ type LinkProps = {
 };
 
 const StyledLink = styled(RouterLink)`
-  color: ${(props) => props.theme.colors.secondary};
   text-decoration: none;
 
   &:hover {

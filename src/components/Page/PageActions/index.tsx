@@ -9,7 +9,7 @@ const Actions = styled.div`
     display: flex;
     margin-left: 10px;
     cursor: pointer;
-    color: ${(props) => props.theme.colors.primary};
+    color: ${(props) => props.theme.colors.white};
 
     i {
       transition: all ease 0.2s;

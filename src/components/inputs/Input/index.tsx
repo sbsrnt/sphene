@@ -6,9 +6,9 @@ const StyledInput = styled.input`
   outline: none;
   padding: 5px;
   background: none;
-  border-bottom: 1px solid ${(props) => props.theme.bg.primary};
-  color: ${(props) => props.theme.bg.primary};
-  font-size: 16px;
+  border-bottom: 1px solid ${(props) => props.theme.colors.gray100};
+  color: ${(props) => props.theme.colors.gray100};
+  font-size: ${(props) => props.theme.typography.fontSizes.default};
 `;
 
 type InputProps = {

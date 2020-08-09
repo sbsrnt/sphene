@@ -12,13 +12,13 @@ const Content = styled(motion.div)`
   left: 0;
   width: 100%;
   height: calc(100% - 30px);
-  color: ${(props) => props.theme.colors.primary};
+  color: ${(props) => props.theme.colors.white};
 `;
 
 const variants = {
   visible: {
     opacity: 1,
-    background: light.bg.primary,
+    background: light.colors.gray100,
   },
   hidden: {
     opacity: 0,

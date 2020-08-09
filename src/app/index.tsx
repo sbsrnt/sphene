@@ -11,7 +11,7 @@ import { Invoicing, Login, Reminders } from 'features';
 import Logout from './Logout';
 
 const AuthContainer = styled(Row)`
-  background: ${(props) => props.theme.bg.primary};
+  background: ${(props) => props.theme.colors.gray100};
   width: 100%;
   height: 100%;
   margin: 0;
@@ -29,7 +29,7 @@ const GuestContainerLeftColumn = styled(Column)`
 `;
 
 const GuestContainerRightColumn = styled(Column)`
-  background: ${(props) => props.theme.colors.primary};
+  background: ${(props) => props.theme.colors.white};
   display: flex;
   align-items: center;
 `;
@@ -38,11 +38,11 @@ const Features = styled.div`
   height: 600px;
   width: 400px;
   margin-right: -0.5em;
-  border: 2px solid ${(props) => props.theme.colors.primary};
+  border: 2px solid ${(props) => props.theme.colors.white};
   border-bottom-left-radius: 4px;
   border-top-left-radius: 4px;
   border-right: 0;
-  box-shadow: 0 1px 5px ${(props) => props.theme.colors.primary};
+  box-shadow: 0 1px 5px ${(props) => props.theme.colors.white};
 `;
 
 const Wrapper = styled.div`
@@ -50,12 +50,12 @@ const Wrapper = styled.div`
   height: 600px;
   width: 400px;
   margin-left: -0.5em;
-  border: 2px solid ${(props) => props.theme.bg.primary};
+  border: 2px solid ${(props) => props.theme.colors.gray100};
   border-bottom-right-radius: 4px;
   border-top-right-radius: 4px;
   border-left: 0;
   justify-content: flex-start;
-  box-shadow: 0 1px 5px ${(props) => props.theme.bg.primary};
+  box-shadow: 0 1px 5px ${(props) => props.theme.colors.gray100};
 `;
 
 function App() {

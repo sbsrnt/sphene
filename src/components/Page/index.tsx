@@ -16,11 +16,11 @@ const StyledPage = styled.div`
   height: 100%;
   width: 100%;
   padding: 1em;
-  background: ${(props) => props.theme.bg.secondary};
-  color: ${(props) => props.theme.colors.primary};
+  background: ${(props) => props.theme.colors.gray300};
+  color: ${(props) => props.theme.colors.white};
 
   > h2 {
-    color: ${(props) => props.theme.colors.primary};
+    color: ${(props) => props.theme.colors.white};
   }
 `;
 

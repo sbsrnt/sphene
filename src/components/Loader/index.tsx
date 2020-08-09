@@ -22,10 +22,10 @@ const StyledLoader = styled.div`
   font-size: 5px;
   position: relative;
   text-indent: -9999em;
-  border-top: 0.55em solid ${(props) => props.theme.bg.tertiary};
-  border-right: 0.55em solid ${(props) => props.theme.bg.tertiary};
-  border-bottom: 0.55em solid ${(props) => props.theme.bg.tertiary};
-  border-left: 0.55em solid ${(props) => props.theme.colors.primary};
+  border-top: 0.55em solid ${(props) => props.theme.colors.gray700};
+  border-right: 0.55em solid ${(props) => props.theme.colors.gray700};
+  border-bottom: 0.55em solid ${(props) => props.theme.colors.gray700};
+  border-left: 0.55em solid ${(props) => props.theme.colors.white};
   -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);
   transform: translateZ(0);

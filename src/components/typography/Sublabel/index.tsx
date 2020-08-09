@@ -1,20 +1,17 @@
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
-type Sublabel = {
+type SublabelProps = {
   children: ReactNode;
-  htmlFor: string;
 };
 
-const Label = styled.label`
-  font-size: 14px;
-  color: ${(props) => props.theme.bg.tertiary};
+const StyledSublabel = styled.span`
+  font-size: ${(props) => props.theme.typography.fontSizes.label};
+  color: ${(props) => props.theme.colors.gray700};
 `;
 
-const Sublabel = ({ children, htmlFor, ...props }: Sublabel) => (
-  <Label htmlFor={htmlFor} {...props}>
-    {children}
-  </Label>
+const Sublabel = ({ children, ...props }: SublabelProps) => (
+  <StyledSublabel {...props}>{children}</StyledSublabel>
 );
 
 export default Sublabel;

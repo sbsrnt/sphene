@@ -9,10 +9,10 @@ import type { ListItem as ListItemType } from './ListItem';
 import ListItem from './ListItem';
 
 const Nav = styled.nav`
-  border-top: 1px solid ${(props) => props.theme.bg.tertiary};
+  border-top: 1px solid ${(props) => props.theme.colors.gray700};
   padding-top: 10px;
   height: 100%;
-  background: ${(props) => props.theme.bg.primary};
+  background: ${(props) => props.theme.colors.gray100};
   display: grid;
   grid-template-rows: calc(100% - 100px);
 `;

@@ -23,8 +23,8 @@ const Li = styled(motion.li)`
     }
 
     &:hover {
-      background: ${(props) => props.theme.colors.primary}20;
-      color: ${(props) => props.theme.colors.primary};
+      background: ${(props) => props.theme.colors.white}20;
+      color: ${(props) => props.theme.colors.white};
     }
 
     &.active {
@@ -32,7 +32,7 @@ const Li = styled(motion.li)`
       &:hover,
       &:visited,
       &:link {
-        color: ${(props) => props.theme.colors.primary};
+        color: ${(props) => props.theme.colors.white};
       }
     }
 

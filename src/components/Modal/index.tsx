@@ -33,8 +33,8 @@ const ModalWrapper = styled(motion.div)`
 const StyledModal = styled(motion.div)`
   padding: 1em;
   max-height: 600px;
-  background: ${(props) => props.theme.colors.primary};
-  color: ${(props) => props.theme.bg.secondary};
+  background: ${(props) => props.theme.colors.white};
+  color: ${(props) => props.theme.colors.gray300};
   max-width: 400px;
   position: relative;
   z-index: 3;
