@@ -1,14 +1,13 @@
-import React, { FC } from 'react';
+import React from 'react';
 
 import { DatePicker, FormField, FormTodo, Input } from 'components';
 
 type PaymentsReminderProps = {
   register: (props: { required?: boolean }) => void;
   errors: any;
-  values?: any;
 };
 
-const PaymentsReminder: FC<PaymentsReminderProps> = ({ register, errors, values }) => (
+const PaymentsReminder = ({ register, errors }: PaymentsReminderProps) => (
   <>
     <FormField
       component={Input}
@@ -16,7 +15,6 @@ const PaymentsReminder: FC<PaymentsReminderProps> = ({ register, errors, values 
       errors={errors}
       placeholder="ex. Tax Payment"
       formRef={register({ required: true })}
-      values={values}
       required
     />
     <FormField
@@ -25,7 +23,6 @@ const PaymentsReminder: FC<PaymentsReminderProps> = ({ register, errors, values 
       name="description"
       errors={errors}
       formRef={register({ required: true })}
-      values={values}
       required
     />
     <FormField
@@ -33,7 +30,6 @@ const PaymentsReminder: FC<PaymentsReminderProps> = ({ register, errors, values 
       name="repeatDay"
       errors={errors}
       formRef={register({ required: true })}
-      values={values}
       required
     />
     <FormTodo register={register} errors={errors} todos={[]} />

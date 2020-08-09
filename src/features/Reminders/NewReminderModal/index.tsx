@@ -35,11 +35,10 @@ type NewReminderModalProps = {
 
 const NewReminderModal: FC<NewReminderModalProps> = ({ toggleModal, isOpen }) => {
   const [isCreateNewReminderToggled, setIsCreateNewReminderToggled] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [{ reminderType, ReminderComponent }, setActiveReminder] = useState(
     supportedReminderTypes[0]
   );
-  const { handleSubmit, register, errors, reset, getValues } = useForm();
+  const { handleSubmit, register, errors, reset } = useForm();
 
   const handleCreateNewReminderToggle = () => setIsCreateNewReminderToggled((toggled) => !toggled);
 
@@ -56,7 +55,7 @@ const NewReminderModal: FC<NewReminderModalProps> = ({ toggleModal, isOpen }) =>
     >
       <Modal.Body>
         <Form>
-          <ReminderComponent register={register} errors={errors} values={getValues()} />
+          <ReminderComponent register={register} errors={errors} />
         </Form>
       </Modal.Body>
       <Modal.Actions>
