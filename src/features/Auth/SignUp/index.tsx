@@ -28,7 +28,7 @@ const SignUp = () => {
   const dispatch = useDispatch();
 
   const onSubmit: SubmitHandler<FormData> = (data: FormData) => {
-    dispatch<any>(signUpUserRequest(data)).then(() => history.push(PATHS.SIGN_UP_COMPLETE));
+    dispatch<any>(signUpUserRequest(data)).then(() => history.push(PATHS.SIGN_IN));
   };
 
   return (

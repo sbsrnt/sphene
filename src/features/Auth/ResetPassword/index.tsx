@@ -26,7 +26,7 @@ const ResetPassword = () => {
         console.log(error);
         return;
       }
-      history.push(PATHS.RESET_PASSWORD_COMPLETE);
+      history.push(PATHS.SIGN_IN);
     });
   };
 
