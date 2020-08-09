@@ -5,9 +5,7 @@ import styled from 'styled-components';
 import PATHS from 'constants/paths';
 import { ThemeProvider } from 'context-providers';
 import { Column, Row } from 'components';
-import { SignIn, SignUp } from 'features';
-
-import SignUpComplete from '../../features/Auth/SignUpComplete';
+import { SignIn, SignUp, SignUpComplete } from 'features';
 
 const AuthContainer = styled(Row)`
   background: ${(props) => props.theme.colors.gray100};
