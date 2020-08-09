@@ -7,6 +7,8 @@ import { ThemeProvider } from 'context-providers';
 import { Column, Row } from 'components';
 import { SignIn, SignUp } from 'features';
 
+import SignUpComplete from '../../features/Auth/SignUpComplete';
+
 const AuthContainer = styled(Row)`
   background: ${(props) => props.theme.colors.gray100};
   width: 100%;
@@ -60,6 +62,7 @@ const GuestView = () => (
         <Wrapper>
           <Route exact path={PATHS.HOME} component={SignIn} />
           <Route exact path={PATHS.SIGN_UP} component={SignUp} />
+          <Route exact path={PATHS.SIGN_UP_COMPLETE} component={SignUpComplete} />
           <Route exact path={PATHS.SIGN_IN} component={SignIn} />
           <Route exact path={PATHS.FORGOT_PASSWORD} component={SignIn} />
           <Route exact path={PATHS.VERIFY_EMAIL} component={SignIn} />

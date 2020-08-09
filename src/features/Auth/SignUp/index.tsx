@@ -1,6 +1,7 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
 import PATHS from 'constants/paths';
@@ -27,10 +28,11 @@ const Footer = styled.div`
 
 const SignUp = () => {
   const { handleSubmit, register, errors } = useForm();
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const onSubmit: SubmitHandler<FormData> = (data: FormData) => {
-    dispatch(signUpUserRequest(data));
+    dispatch<any>(signUpUserRequest(data)).then(() => history.push(PATHS.SIGN_UP_COMPLETE));
   };
 
   return (
