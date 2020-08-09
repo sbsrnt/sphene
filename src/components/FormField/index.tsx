@@ -11,7 +11,7 @@ type FormField = {
   formRef?: any;
   placeholder?: string;
   required?: boolean;
-  values: any;
+  type?: string;
 };
 
 const Field = styled.div`
@@ -24,21 +24,13 @@ const Field = styled.div`
   }
 `;
 
-const FormField = ({
-  component: T,
-  name,
-  errors,
-  formRef,
-  required,
-  values,
-  ...props
-}: FormField) => {
+const FormField = ({ component: T, name, errors, formRef, required, ...props }: FormField) => {
   return (
     <Field>
       <Sublabel htmlFor={name}>
         {startCase(name)} {required && '*'}
       </Sublabel>
-      <T id={name} name={name} formRef={formRef} value={values[name]} {...props} />
+      <T id={name} name={name} formRef={formRef} {...props} />
       {errors[name] && errors[name].message}
     </Field>
   );
