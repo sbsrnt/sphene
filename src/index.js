@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import axios from 'axios';
-import { omit } from 'lodash';
 import { applyMiddleware, createStore } from 'redux';
 import axiosMiddleware from 'redux-axios-middleware';
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -24,16 +23,16 @@ const client = axios.create({
 });
 
 const axiosMiddlewareConfig = {
-  // interceptors: {
-  //   response: [
-  //     {
-  //       error: function (_, error) {
-  //         console.log("res", error.response.data);
-  //         return Promise.reject({message: error.response.data});
-  //       },
-  //     },
-  //   ],
-  // },
+  interceptors: {
+    response: [
+      {
+        success: (_, res) => Promise.resolve(res.data),
+      },
+      {
+        error: (_, error) => Promise.reject({ message: error.response.data }),
+      },
+    ],
+  },
 };
 
 const store = createStore(
