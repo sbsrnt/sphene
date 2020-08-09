@@ -3,6 +3,8 @@ import { ReactComponent as Logo } from 'icons/Logo.svg';
 import { isArray } from 'lodash';
 import styled from 'styled-components';
 
+import { Column, Row } from 'components';
+
 type AuthContainerProps = {
   children: ReactNode | ReactNode[];
 };
@@ -32,11 +34,17 @@ const AuthContainer = ({ children }: AuthContainerProps) => {
       </StyledHeader>
       {isArray(children) ? (
         <StyledAuthContainerWithFooter>
-          {children[0]}
-          {children[1]}
+          <Row>
+            <Column>{children[0]}</Column>
+          </Row>
+          <Row>
+            <Column>{children[1]}</Column>
+          </Row>
         </StyledAuthContainerWithFooter>
       ) : (
-        children
+        <Row>
+          <Column>children</Column>
+        </Row>
       )}
     </>
   );

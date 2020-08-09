@@ -14,17 +14,13 @@ type FormData = {
   password: string;
 };
 
-const LoginColumn = styled((props) => <Column {...props} />)`
+const SignInColumn = styled((props) => <Column {...props} />)`
   display: flex;
   flex-direction: column;
 
   button {
     margin-top: 20px;
   }
-`;
-
-const Form = styled.form`
-  max-width: 400px;
 `;
 
 const Footer = styled.div`
@@ -43,7 +39,7 @@ const SignIn = () => {
 
   return (
     <AuthContainer>
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Row>
           <Column>
             <FormField
@@ -69,18 +65,18 @@ const SignIn = () => {
           </Column>
         </Row>
         <Row>
-          <LoginColumn>
-            <Button>Login</Button>
+          <SignInColumn>
+            <Button>Sign In</Button>
             <Button variant="none" as={Link} to={PATHS.FORGOT_PASSWORD}>
               <Sublabel>Forgot password?</Sublabel>
             </Button>
-          </LoginColumn>
+          </SignInColumn>
         </Row>
-      </Form>
+      </form>
       <Footer>
         <Sublabel>Don't have an account?</Sublabel>
         <Button as={Link} to={PATHS.SIGN_UP}>
-          Create
+          Sign Up
         </Button>
       </Footer>
     </AuthContainer>

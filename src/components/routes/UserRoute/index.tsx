@@ -20,7 +20,7 @@ const UserRoute = ({ component: Component, ...rest }: UserRouteProps) => {
           return (
             <Redirect
               to={{
-                pathname: '/login',
+                pathname: '/sign-in',
                 state: {
                   from: props.location,
                 },

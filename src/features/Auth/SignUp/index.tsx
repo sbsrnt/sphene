@@ -79,7 +79,7 @@ const SignUp = () => {
       <Footer>
         <Sublabel>Already have an account?</Sublabel>
         <Button as={Link} to={PATHS.SIGN_IN}>
-          Login
+          Sign In
         </Button>
       </Footer>
     </AuthContainer>

@@ -32,46 +32,38 @@ const ResetPassword = () => {
 
   return (
     <AuthContainer>
-      <Row>
-        <Column>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Row>
-              <Column>
-                <FormField
-                  component={Input}
-                  name="newPassword"
-                  errors={errors}
-                  formRef={register({ required: true })}
-                  required
-                />
-              </Column>
-            </Row>
-            <Row>
-              <Column>
-                <FormField
-                  component={Input}
-                  name="confirmNewPassword"
-                  errors={errors}
-                  formRef={register({ required: true })}
-                  required
-                />
-              </Column>
-            </Row>
-            <Row>
-              <Column>
-                <Button block>Reset Password</Button>
-              </Column>
-            </Row>
-          </form>
-        </Column>
-      </Row>
-      <Row>
-        <Column>
-          <Button as={Link} to={PATHS.SIGN_IN}>
-            Go Back
-          </Button>
-        </Column>
-      </Row>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Row>
+          <Column>
+            <FormField
+              component={Input}
+              name="newPassword"
+              errors={errors}
+              formRef={register({ required: true })}
+              required
+            />
+          </Column>
+        </Row>
+        <Row>
+          <Column>
+            <FormField
+              component={Input}
+              name="confirmNewPassword"
+              errors={errors}
+              formRef={register({ required: true })}
+              required
+            />
+          </Column>
+        </Row>
+        <Row>
+          <Column>
+            <Button block>Reset Password</Button>
+          </Column>
+        </Row>
+      </form>
+      <Button as={Link} to={PATHS.SIGN_IN}>
+        Go Back
+      </Button>
     </AuthContainer>
   );
 };
