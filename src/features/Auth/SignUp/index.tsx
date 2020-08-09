@@ -16,10 +16,6 @@ type FormData = {
   password: string;
 };
 
-const Form = styled.form`
-  max-width: 400px;
-`;
-
 const Footer = styled.div`
   display: flex;
   align-items: center;
@@ -37,7 +33,7 @@ const SignUp = () => {
 
   return (
     <AuthContainer>
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Row>
           <Column>
             <FormField
@@ -79,7 +75,7 @@ const SignUp = () => {
             <Button block>Sign Up</Button>
           </Column>
         </Row>
-      </Form>
+      </form>
       <Footer>
         <Sublabel>Already have an account?</Sublabel>
         <Button as={Link} to={PATHS.SIGN_IN}>
