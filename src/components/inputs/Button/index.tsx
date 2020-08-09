@@ -20,7 +20,7 @@ const StyledButton = styled.div<{ variant: Variants; size: Sizes }>`
   padding: 5px 10px;
   transition: all ease 0.4s;
   cursor: pointer;
-  min-width: 120px;
+  min-width: 100px;
   outline: none;
   opacity: ${(props: any) => props.disabled && '50%'};
   border-radius: 4px;

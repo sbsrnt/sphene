@@ -6,7 +6,7 @@ type BodyProps = {
 };
 
 const StyledBody = styled.p`
-  font-size: 16px;
+  font-size: ${(props) => props.theme.typography.fontSizes.default};
 `;
 
 const Body = ({ children, ...props }: BodyProps) => <StyledBody {...props}>{children}</StyledBody>;

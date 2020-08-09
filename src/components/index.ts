@@ -12,6 +12,7 @@ export { default as Input } from './inputs/Input';
  */
 export { default as Header } from './typography/Header';
 export { default as Body } from './typography/Body';
+export { default as BodySmall } from './typography/BodySmall';
 export { default as Bold } from './typography/Bold';
 export { default as Label } from './typography/Label';
 export { default as Sublabel } from './typography/Sublabel';

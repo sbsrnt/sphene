@@ -16,6 +16,7 @@ const light = {
       h4: '20px',
       default: '16px',
       label: '14px',
+      small: '12px',
     },
   },
   button: {
