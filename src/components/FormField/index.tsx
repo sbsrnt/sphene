@@ -2,7 +2,7 @@ import React, { ElementType } from 'react';
 import startCase from 'lodash/startCase';
 import styled from 'styled-components';
 
-import { Sublabel } from 'components';
+import { Label } from 'components';
 
 type FormField = {
   component: ElementType;
@@ -27,9 +27,9 @@ const Field = styled.div`
 const FormField = ({ component: T, name, errors, formRef, required, ...props }: FormField) => {
   return (
     <Field>
-      <Sublabel htmlFor={name}>
+      <Label htmlFor={name}>
         {startCase(name)} {required && '*'}
-      </Sublabel>
+      </Label>
       <T id={name} name={name} formRef={formRef} {...props} />
       {errors[name] && errors[name].message}
     </Field>
