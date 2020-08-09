@@ -18,7 +18,7 @@ type Button = {
 };
 
 const StyledButton = styled.div<{ variant: Variants; size: Sizes; block?: boolean }>`
-  padding: 5px 10px;
+  padding: 5px 1em;
   transition: all ease 0.4s;
   cursor: pointer;
   min-width: 100px;
