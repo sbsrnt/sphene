@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 type SublabelProps = {
   children: ReactNode;
+  dataId?: string;
 };
 
 const StyledSublabel = styled.span`
@@ -10,8 +11,10 @@ const StyledSublabel = styled.span`
   color: ${(props) => props.theme.colors.gray900};
 `;
 
-const Sublabel = ({ children, ...props }: SublabelProps) => (
-  <StyledSublabel {...props}>{children}</StyledSublabel>
+const Sublabel = ({ children, dataId, ...props }: SublabelProps) => (
+  <StyledSublabel data-cy={dataId} {...props}>
+    {children}
+  </StyledSublabel>
 );
 
 export default Sublabel;

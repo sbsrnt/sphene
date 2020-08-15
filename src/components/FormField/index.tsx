@@ -2,7 +2,7 @@ import React, { ElementType } from 'react';
 import startCase from 'lodash/startCase';
 import styled from 'styled-components';
 
-import { Label } from 'components';
+import { Label, Sublabel } from 'components';
 
 type FormField = {
   component: ElementType;
@@ -12,6 +12,7 @@ type FormField = {
   placeholder?: string;
   required?: boolean;
   type?: string;
+  dataId?: string;
 };
 
 const Field = styled.div`
@@ -24,14 +25,22 @@ const Field = styled.div`
   }
 `;
 
-const FormField = ({ component: T, name, errors, formRef, required, ...props }: FormField) => {
+const FormField = ({
+  component: T,
+  name,
+  errors,
+  formRef,
+  required,
+  dataId,
+  ...props
+}: FormField) => {
   return (
     <Field>
-      <Label htmlFor={name}>
+      <Label htmlFor={name} data-cy={`label-${dataId}`}>
         {startCase(name)} {required && '*'}
       </Label>
-      <T id={name} name={name} formRef={formRef} {...props} />
-      {errors[name] && errors[name].message}
+      <T id={name} name={name} formRef={formRef} data-cy={`input-${dataId}`} {...props} />
+      <Sublabel data-cy={`sublabel-${dataId}`}>{errors[name] && errors[name].message}</Sublabel>
     </Field>
   );
 };

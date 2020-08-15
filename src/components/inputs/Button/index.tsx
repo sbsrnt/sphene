@@ -15,6 +15,7 @@ type Button = {
   disabled?: boolean;
   size?: Sizes;
   block?: boolean;
+  dataId?: string;
 };
 
 const StyledButton = styled.div<{ variant: Variants; size: Sizes; block?: boolean }>`
@@ -37,10 +38,11 @@ const Button = ({
   size = 'small',
   block = false,
   children,
+  dataId,
   ...props
 }: Button) => {
   return (
-    <StyledButton as={as} variant={variant} size={size} block={block} {...props}>
+    <StyledButton as={as} variant={variant} size={size} block={block} data-cy={dataId} {...props}>
       <Bold>{children}</Bold>
     </StyledButton>
   );

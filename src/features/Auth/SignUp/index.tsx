@@ -42,6 +42,7 @@ const SignUp = () => {
               errors={errors}
               placeholder="jon@smith.com"
               formRef={register({ required: true })}
+              dataId="email"
               required
             />
           </Column>
@@ -54,6 +55,7 @@ const SignUp = () => {
               errors={errors}
               placeholder="jon@smith.com"
               formRef={register({ required: true })}
+              dataId="confirm-email"
               required
             />
           </Column>
@@ -66,19 +68,22 @@ const SignUp = () => {
               type="password"
               errors={errors}
               formRef={register({ required: true })}
+              dataId="password"
               required
             />
           </Column>
         </Row>
         <Row>
           <Column>
-            <Button block>Sign Up</Button>
+            <Button block dataId="button-sign-up">
+              Sign Up
+            </Button>
           </Column>
         </Row>
       </form>
       <Footer>
         <Sublabel>Already have an account?</Sublabel>
-        <Button as={Link} to={PATHS.SIGN_IN}>
+        <Button as={Link} to={PATHS.SIGN_IN} dataId="button-sign-in">
           Sign In
         </Button>
       </Footer>

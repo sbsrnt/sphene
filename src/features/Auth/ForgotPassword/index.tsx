@@ -38,17 +38,20 @@ const ForgotPassword = () => {
               name="email"
               errors={errors}
               formRef={register({ required: true })}
+              dataId="email"
               required
             />
           </Column>
         </Row>
         <Row>
           <Column>
-            <Button block>Request Password Reset</Button>
+            <Button block dataId="button-request-reset">
+              Request Password Reset
+            </Button>
           </Column>
         </Row>
       </form>
-      <Button as={Link} to={PATHS.SIGN_IN}>
+      <Button as={Link} to={PATHS.SIGN_IN} dataId="button-go-back">
         Go Back
       </Button>
     </AuthContainer>

@@ -48,6 +48,7 @@ const SignIn = () => {
               errors={errors}
               placeholder="jon@smith.com"
               formRef={register({ required: true })}
+              dataId="email"
               required
             />
           </Column>
@@ -60,14 +61,20 @@ const SignIn = () => {
               type="password"
               errors={errors}
               formRef={register({ required: true })}
+              dataId="password"
               required
             />
           </Column>
         </Row>
         <Row>
           <SignInColumn>
-            <Button>Sign In</Button>
-            <Button variant="none" as={Link} to={PATHS.FORGOT_PASSWORD}>
+            <Button dataId="button-sign-in">Sign In</Button>
+            <Button
+              variant="none"
+              as={Link}
+              to={PATHS.FORGOT_PASSWORD}
+              dataId="button-forgot-password"
+            >
               <Sublabel>Forgot password?</Sublabel>
             </Button>
           </SignInColumn>
@@ -75,7 +82,7 @@ const SignIn = () => {
       </form>
       <Footer>
         <Sublabel>Don't have an account?</Sublabel>
-        <Button as={Link} to={PATHS.SIGN_UP}>
+        <Button as={Link} to={PATHS.SIGN_UP} dataId="button-sign-up">
           Sign Up
         </Button>
       </Footer>
