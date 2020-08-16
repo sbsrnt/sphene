@@ -19,7 +19,7 @@ describe('SignIn', () => {
     signUpPage.buttonSignUp.should('be.visible');
   });
 
-  it.only('throws 404 when attempting to Sign In with not existing user', () => {
+  it('throws 404 when attempting to Sign In with not existing user', () => {
     cy.server();
     cy.mockRoute({ method: 'POST', path: '/auth/login' }).as('existingUser');
 
@@ -31,6 +31,8 @@ describe('SignIn', () => {
     cy.wait('@existingUser').should((res) => {
       expect(res.status).to.eq(404);
     });
+
+    cy.contains("User with given email doesn't exist");
   });
 
   it('throws 401 when attempting to Sign In with wrong creds', () => {
@@ -45,6 +47,8 @@ describe('SignIn', () => {
     cy.wait('@existingUser').should((res) => {
       expect(res.status).to.eq(401);
     });
+
+    cy.contains('Unauthorized');
   });
 
   it('Signs In user with proper credentials', () => {
@@ -53,13 +57,23 @@ describe('SignIn', () => {
     cy.mockRoute({ method: 'POST', path: '/auth/login' }).as('existingUser');
 
     signInPage.visit();
-    signInPage.inputEmail.type('qwe@qwe.qwe');
-    signInPage.inputPassword.type('Qwert123');
+    signInPage.inputEmail.type('test@test.test');
+    signInPage.inputPassword.type('test');
     signInPage.buttonSignIn.click();
+
+    signInPage.buttonSignIn.should('be.disabled');
+    signInPage.buttonForgotPassword.should('have.attr', 'aria-disabled', 'true');
+    signInPage.buttonForgotPassword.should('have.attr', 'aria-disabled', 'true');
 
     cy.wait('@existingUser').should((res) => {
       expect(res.status).to.eq(201);
     });
+
+    signInPage.buttonSignIn.should('not.be.disabled');
+    signInPage.buttonForgotPassword.should('have.attr', 'aria-disabled', 'false');
+    signInPage.buttonForgotPassword.should('have.attr', 'aria-disabled', 'false');
+
+    cy.contains('Successfully signed in!');
   });
 });
 

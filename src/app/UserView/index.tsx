@@ -13,15 +13,17 @@ const Container = styled.div`
 `;
 
 const UserView = () => (
-  <Container>
+  <>
     <Logout />
-    <NavSidebar />
-    <Switch>
-      <UserRoute exact path="/" component={Invoicing} />
-      <UserRoute exact path="/invoicing" component={Invoicing} />
-      <UserRoute exact path="/reminders" component={Reminders} />
-    </Switch>
-  </Container>
+    <Container>
+      <NavSidebar />
+      <Switch>
+        <UserRoute exact path="/" component={Invoicing} />
+        <UserRoute exact path="/invoicing" component={Invoicing} />
+        <UserRoute exact path="/reminders" component={Reminders} />
+      </Switch>
+    </Container>
+  </>
 );
 
 export default UserView;

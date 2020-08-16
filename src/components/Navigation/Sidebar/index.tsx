@@ -12,7 +12,7 @@ const Nav = styled.nav`
   border-top: 1px solid ${(props) => props.theme.colors.gray700};
   padding-top: 10px;
   height: 100%;
-  background: ${(props) => props.theme.colors.gray100};
+  background: ${(props) => props.theme.colors.gray300};
   display: grid;
   grid-template-rows: calc(100% - 100px);
 `;

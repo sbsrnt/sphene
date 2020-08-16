@@ -73,10 +73,10 @@ const TooltipText = styled.span`
 `;
 
 const Logout = () => {
-  const { logout } = useAuth();
+  // const { logout } = useAuth();
   return (
     <MainTooltip>
-      <MenuBarBtn onClick={logout}>
+      <MenuBarBtn onClick={() => ({})}>
         <i className="material-icons login" />
         <TooltipText className="tooltiptext">Logout</TooltipText>
       </MenuBarBtn>

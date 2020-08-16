@@ -18,13 +18,18 @@ type Button = {
   dataId?: string;
 };
 
-const StyledButton = styled.div<{ variant: Variants; size: Sizes; block?: boolean }>`
+const StyledButton = styled.div<{
+  variant: Variants;
+  size: Sizes;
+  block?: boolean;
+  disabled?: boolean;
+}>`
   padding: 5px 1em;
   transition: all ease 0.4s;
-  cursor: pointer;
+  cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
   min-width: 100px;
   outline: none;
-  opacity: ${(props: any) => props.disabled && '50%'};
+  opacity: ${(props) => (props.disabled ? '0.5' : '1')};
   border-radius: 4px;
   width: ${(props) => (props.block ? '100%' : 'initial')};
   ${(props) => props.theme.button};
@@ -39,10 +44,20 @@ const Button = ({
   block = false,
   children,
   dataId,
+  disabled = false,
   ...props
 }: Button) => {
   return (
-    <StyledButton as={as} variant={variant} size={size} block={block} data-cy={dataId} {...props}>
+    <StyledButton
+      as={as}
+      variant={variant}
+      size={size}
+      block={block}
+      data-cy={dataId}
+      aria-disabled={disabled}
+      disabled={disabled}
+      {...props}
+    >
       <Bold>{children}</Bold>
     </StyledButton>
   );

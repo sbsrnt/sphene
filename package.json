@@ -62,8 +62,10 @@
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
+    "react-toastify": "^6.0.8",
     "redux": "^4.0.5",
     "redux-axios-middleware": "^4.0.1",
+    "reselect": "^4.0.0",
     "styled-components": "^5.1.1",
     "typescript": "3.9.3"
   },
@@ -104,7 +106,15 @@
     ]
   },
   "standard": {
-    "env": ["browser", "mocha"],
-    "globals": ["cy", "Cypress", "expect", "assert"]
+    "env": [
+      "browser",
+      "mocha"
+    ],
+    "globals": [
+      "cy",
+      "Cypress",
+      "expect",
+      "assert"
+    ]
   }
 }

@@ -16,7 +16,7 @@ const StyledPage = styled.div`
   height: 100%;
   width: 100%;
   padding: 1em;
-  background: ${(props) => props.theme.colors.gray300};
+  background: ${(props) => props.theme.colors.gray100};
   color: ${(props) => props.theme.colors.white};
 
   > h2 {

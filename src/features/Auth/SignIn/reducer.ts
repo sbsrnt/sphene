@@ -1,14 +1,23 @@
 import { Reducer } from 'redux';
 import { apiErrorBinder, apiSuccessBinder, failure, success } from 'utils/actionHelpers';
 
+import { APIError } from 'types';
+
 import { SIGN_IN_USER } from '../constants';
+
+export type UserState = {
+  isLoading: boolean;
+  isAuthenticated: boolean;
+  access_token?: string;
+  error?: APIError;
+};
 
 const initialState = {
   isLoading: false,
   isAuthenticated: false,
 };
 
-const SignInReducer: Reducer = (state = initialState, { type, payload, error }) => {
+const SignInReducer: Reducer<UserState> = (state = initialState, { type, payload, error }) => {
   switch (type) {
     case SIGN_IN_USER: {
       return {

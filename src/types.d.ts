@@ -24,12 +24,8 @@ interface RefObject<T> {
 
 export type APIError = {
   error: {
-    response: {
-      data: {
-        error: string;
-        message: string;
-        code: number;
-      };
-    };
+    error: string;
+    message: string;
+    code: number;
   };
 };

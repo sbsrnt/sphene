@@ -1,10 +1,12 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import styled from 'styled-components';
 
 import PATHS from 'constants/paths';
 import { Button, Column, FormField, Input, Link, Row, Sublabel } from 'components';
+import { getUserSelector } from 'features/Auth/selectors';
 
 import AuthContainer from '../Container';
 import { signInUserRequest } from './actions';
@@ -32,9 +34,16 @@ const Footer = styled.div`
 const SignIn = () => {
   const { handleSubmit, register, errors } = useForm();
   const dispatch = useDispatch();
+  const { isLoading } = useSelector(getUserSelector);
 
   const onSubmit: SubmitHandler<FormData> = (data: FormData) => {
-    dispatch(signInUserRequest(data));
+    dispatch<any>(signInUserRequest(data)).then(({ error }: any) => {
+      if (error) {
+        return toast.error(error.data.message);
+      }
+
+      return toast.success('Successfully signed in!');
+    });
   };
 
   return (
@@ -68,12 +77,15 @@ const SignIn = () => {
         </Row>
         <Row>
           <SignInColumn>
-            <Button dataId="button-sign-in">Sign In</Button>
+            <Button dataId="button-sign-in" disabled={isLoading}>
+              Sign In
+            </Button>
             <Button
               variant="none"
               as={Link}
               to={PATHS.FORGOT_PASSWORD}
               dataId="button-forgot-password"
+              disabled={isLoading}
             >
               <Sublabel>Forgot password?</Sublabel>
             </Button>
@@ -82,7 +94,7 @@ const SignIn = () => {
       </form>
       <Footer>
         <Sublabel>Don't have an account?</Sublabel>
-        <Button as={Link} to={PATHS.SIGN_UP} dataId="button-sign-up">
+        <Button as={Link} to={PATHS.SIGN_UP} dataId="button-sign-up" disabled={isLoading}>
           Sign Up
         </Button>
       </Footer>

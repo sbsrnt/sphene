@@ -14,4 +14,16 @@ Cypress.Commands.add('mockRoute', ({ method = 'POST', path = '' }: Options) => {
   });
 });
 
+Cypress.Commands.add('signIn', () => {
+  // @ts-ignore
+  return cy.route({
+    method: 'POST',
+    url: 'http://localhost:4000/auth/login',
+    body: {
+      email: 'test@test.test',
+      password: 'test',
+    },
+  });
+});
+
 export {};
