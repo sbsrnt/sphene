@@ -68,12 +68,9 @@ describe('SignIn', () => {
     cy.wait('@existingUser').should((res) => {
       expect(res.status).to.eq(201);
     });
-
-    signInPage.buttonSignIn.should('not.be.disabled');
-    signInPage.buttonForgotPassword.should('have.attr', 'aria-disabled', 'false');
-    signInPage.buttonForgotPassword.should('have.attr', 'aria-disabled', 'false');
-
     cy.contains('Successfully signed in!');
+    cy.url().should('eq', 'http://localhost:3000/');
+    cy.contains('Hi');
   });
 });
 
