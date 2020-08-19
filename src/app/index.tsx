@@ -11,14 +11,17 @@ import UserView from './UserView';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
-  const { isLoading = false, isAuthenticated } = useAuth();
+  const { isLoading = true, isAuthenticated } = useAuth();
+
   return (
     <>
-      <Router>
-        {!isAuthenticated && <GuestView />}
-        {isAuthenticated && <UserView />}
-      </Router>
-      {/*<PageLoader visible={isLoading} />*/}
+      {!isLoading && (
+        <Router>
+          {!isAuthenticated && <GuestView />}
+          {isAuthenticated && <UserView />}
+        </Router>
+      )}
+      <PageLoader visible={isLoading} />
       <ToastContainer />
     </>
   );

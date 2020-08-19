@@ -1,6 +1,7 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import styled from 'styled-components';
 
@@ -34,6 +35,7 @@ const Footer = styled.div`
 const SignIn = () => {
   const { handleSubmit, register, errors } = useForm();
   const dispatch = useDispatch();
+  const history = useHistory();
   const { isLoading } = useSelector(getUserSelector);
 
   const onSubmit: SubmitHandler<FormData> = (data: FormData) => {
@@ -41,7 +43,7 @@ const SignIn = () => {
       if (error) {
         return toast.error(error.data.message);
       }
-
+      history.push(PATHS.DASHBOARD);
       return toast.success('Successfully signed in!');
     });
   };
@@ -77,7 +79,7 @@ const SignIn = () => {
         </Row>
         <Row>
           <SignInColumn>
-            <Button dataId="button-sign-in" disabled={isLoading}>
+            <Button dataId="button-sign-in" isLoading={isLoading}>
               Sign In
             </Button>
             <Button

@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
-import { Bold } from 'components';
+import { Bold, Loader } from 'components';
 
 type Variants = 'none' | 'bordered' | 'default' | 'success';
 type Sizes = 'large' | 'medium' | 'small';
@@ -16,6 +16,7 @@ type Button = {
   size?: Sizes;
   block?: boolean;
   dataId?: string;
+  isLoading?: boolean;
 };
 
 const StyledButton = styled.div<{
@@ -45,22 +46,21 @@ const Button = ({
   children,
   dataId,
   disabled = false,
+  isLoading = false,
   ...props
-}: Button) => {
-  return (
-    <StyledButton
-      as={as}
-      variant={variant}
-      size={size}
-      block={block}
-      data-cy={dataId}
-      aria-disabled={disabled}
-      disabled={disabled}
-      {...props}
-    >
-      <Bold>{children}</Bold>
-    </StyledButton>
-  );
-};
+}: Button) => (
+  <StyledButton
+    as={as}
+    variant={variant}
+    size={size}
+    block={block}
+    data-cy={dataId}
+    aria-disabled={disabled}
+    disabled={disabled || isLoading}
+    {...props}
+  >
+    {isLoading ? <Loader /> : <Bold>{children}</Bold>}
+  </StyledButton>
+);
 
 export default Button;

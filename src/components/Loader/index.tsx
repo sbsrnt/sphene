@@ -14,18 +14,18 @@ const spin = keyframes`
     }
 `;
 
-const StyledLoader = styled.div`
+const StyledLoader = styled.div<{ size: number }>`
   border-radius: 50%;
-  width: 5em;
-  height: 5em;
-  margin: 30px auto;
+  width: ${(props) => props.size}em;
+  height: ${(props) => props.size}em;
+  margin: 0 auto;
   font-size: 5px;
   position: relative;
   text-indent: -9999em;
-  border-top: 0.55em solid ${(props) => props.theme.colors.gray700};
-  border-right: 0.55em solid ${(props) => props.theme.colors.gray700};
-  border-bottom: 0.55em solid ${(props) => props.theme.colors.gray700};
-  border-left: 0.55em solid ${(props) => props.theme.colors.white};
+  border-top: ${(props) => props.size * 0.11}em solid ${(props) => props.theme.colors.gray700};
+  border-right: ${(props) => props.size * 0.11}em solid ${(props) => props.theme.colors.gray700};
+  border-bottom: ${(props) => props.size * 0.11}em solid ${(props) => props.theme.colors.gray700};
+  border-left: ${(props) => props.size * 0.11}em solid ${(props) => props.theme.colors.white};
   -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);
   transform: translateZ(0);
@@ -39,9 +39,9 @@ const StyledLoader = styled.div`
   }
 `;
 
-const Loader = () => (
+const Loader = ({ size = 5 }: any) => (
   <ThemeProvider>
-    <StyledLoader />
+    <StyledLoader size={size} />
   </ThemeProvider>
 );
 

@@ -1,6 +1,7 @@
 import React, { ElementType } from 'react';
 import { Redirect, Route, RouteProps } from 'react-router-dom';
 
+import PATHS from 'constants/paths';
 import { useAuth } from 'hooks';
 
 type UserRouteProps = {
@@ -20,7 +21,7 @@ const UserRoute = ({ component: Component, ...rest }: UserRouteProps) => {
           return (
             <Redirect
               to={{
-                pathname: '/sign-in',
+                pathname: PATHS.SIGN_IN,
                 state: {
                   from: props.location,
                 },

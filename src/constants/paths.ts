@@ -3,6 +3,7 @@ export const PATHS = {
    * Features
    */
   HOME: '/',
+  DASHBOARD: '/',
   INVOICES: '/invoices',
   REMINDERS: '/reminders',
 

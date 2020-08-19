@@ -2,8 +2,9 @@ import React from 'react';
 import { Switch } from 'react-router-dom';
 import styled from 'styled-components';
 
+import PATHS from 'constants/paths';
 import { NavSidebar, UserRoute } from 'components';
-import { Invoicing, Reminders } from 'features';
+import { Dashboard, Invoicing, Reminders } from 'features';
 
 import Logout from './Logout';
 
@@ -18,9 +19,9 @@ const UserView = () => (
     <Container>
       <NavSidebar />
       <Switch>
-        <UserRoute exact path="/" component={Invoicing} />
-        <UserRoute exact path="/invoicing" component={Invoicing} />
-        <UserRoute exact path="/reminders" component={Reminders} />
+        <UserRoute exact path={PATHS.DASHBOARD} component={Dashboard} />
+        <UserRoute exact path={PATHS.INVOICES} component={Invoicing} />
+        <UserRoute exact path={PATHS.REMINDERS} component={Reminders} />
       </Switch>
     </Container>
   </>
