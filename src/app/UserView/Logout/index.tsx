@@ -1,7 +1,8 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
-import { useAuth } from 'hooks';
+import { signOutUser } from 'features/Auth/SignIn/actions';
 
 const MainTooltip = styled.div`
   position: relative;
@@ -73,10 +74,12 @@ const TooltipText = styled.span`
 `;
 
 const Logout = () => {
-  // const { logout } = useAuth();
+  const dispatch = useDispatch();
+  const handleLogout = () => dispatch(signOutUser());
+
   return (
     <MainTooltip>
-      <MenuBarBtn onClick={() => ({})}>
+      <MenuBarBtn onClick={handleLogout}>
         <i className="material-icons login" />
         <TooltipText className="tooltiptext">Logout</TooltipText>
       </MenuBarBtn>

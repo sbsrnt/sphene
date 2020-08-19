@@ -3,7 +3,7 @@ import { apiErrorBinder, apiSuccessBinder, failure, success } from 'utils/action
 
 import { APIError } from 'types';
 
-import { SIGN_IN_USER } from '../constants';
+import { SIGN_IN_USER, SIGN_OUT_USER } from '../constants';
 
 export type UserState = {
   isLoading: boolean;
@@ -27,6 +27,9 @@ const SignInReducer: Reducer<UserState> = (state = initialState, { type, payload
     }
 
     case success(SIGN_IN_USER): {
+      const { access_token } = apiSuccessBinder(payload);
+      localStorage.setItem('token', access_token);
+
       return {
         ...state,
         ...apiSuccessBinder(payload),
@@ -40,6 +43,15 @@ const SignInReducer: Reducer<UserState> = (state = initialState, { type, payload
         ...state,
         ...apiErrorBinder(error),
         isLoading: false,
+        isAuthenticated: false,
+      };
+    }
+
+    case SIGN_OUT_USER: {
+      localStorage.setItem('token', '');
+
+      return {
+        ...state,
         isAuthenticated: false,
       };
     }
