@@ -37,7 +37,7 @@ export function signIn() {
     url: 'http://localhost:4000/auth/login',
     body: {
       email: 'test@test.test',
-      password: 'test',
+      password: 'password',
     },
   });
 }
