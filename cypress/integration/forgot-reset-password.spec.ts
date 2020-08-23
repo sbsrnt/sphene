@@ -16,7 +16,7 @@ describe('ForgotPassword', () => {
     signInPage.buttonForgotPassword.click();
   });
 
-  it('redirects to Forgot Password', () => {
+  it('is on Forgot Password page', () => {
     cy.isUrl(PATHS.FORGOT_PASSWORD);
     forgotPasswordPage.buttonRequestReset.should('be.visible');
   });
@@ -82,15 +82,15 @@ describe('ResetPassword', () => {
   const resetPasswordPage = new ResetPasswordPage();
   const signInPage = new SignInPage();
 
-  it('redirects to Home when in /reset-password', async () => {
+  it('redirects to Home when in /reset-password', () => {
     resetPasswordPage.visit();
-    await cy.isUrl(PATHS.RESET_PASSWORD);
-    await cy.isUrl(PATHS.HOME);
+    cy.isUrl(PATHS.RESET_PASSWORD);
+    cy.isUrl(PATHS.HOME);
   });
 
   // To make this test work we need to create reset password token in 'creates Forgot Password token'
   // I could create command for that, but since we use that token only in one test then I don't see the need for it
-  it('resets Password with existing token in DB', () => {
+  it('resets password with existing token in DB', () => {
     const resetPasswordTokenPage = new ResetPasswordPage(`/${resetPasswordToken}`);
     cy.server();
     cy.mockRoute({

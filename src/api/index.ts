@@ -4,3 +4,4 @@ export const getSignIn = () => `${DOMAIN}/auth/login`;
 export const getSignUp = () => `${DOMAIN}/auth/register`;
 export const getForgotPassword = () => `${DOMAIN}/auth/forgot-password`;
 export const getResetPassword = (token: string) => `${DOMAIN}/auth/reset-password/${token}`;
+export const getVerifyEmail = (token: string | {}) => `${DOMAIN}/auth/verify/${token}`;

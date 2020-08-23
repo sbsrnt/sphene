@@ -1,6 +1,7 @@
 type MockRouteOptions = {
   method: string;
   path: string;
+  body: any;
 };
 
 export function cleanupAndSeedData() {
@@ -15,10 +16,12 @@ export function getId(value: string) {
   return cy.get(`[data-cy="${value}"]`);
 }
 
-export function mockRoute({ method = 'POST', path = '' }: MockRouteOptions) {
+export function mockRoute({ method = 'POST', path = '', body }: MockRouteOptions) {
+  // @ts-ignore
   return cy.route({
     method,
     url: `http://localhost:4000${path}`,
+    body,
   });
 }
 
