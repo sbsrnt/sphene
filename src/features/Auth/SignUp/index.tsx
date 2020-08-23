@@ -83,7 +83,7 @@ const SignUp = () => {
         </Row>
         <Row>
           <Column>
-            <Button block dataId="button-sign-up" disabled={isLoading}>
+            <Button block dataId="button-sign-up" isLoading={isLoading}>
               Sign Up
             </Button>
           </Column>
@@ -91,7 +91,7 @@ const SignUp = () => {
       </form>
       <Footer>
         <Sublabel>Already have an account?</Sublabel>
-        <Button as={Link} to={PATHS.SIGN_IN} dataId="button-sign-in" isLoading={isLoading}>
+        <Button as={Link} to={PATHS.SIGN_IN} dataId="button-sign-in" disabled={isLoading}>
           Sign In
         </Button>
       </Footer>

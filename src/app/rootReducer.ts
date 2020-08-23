@@ -1,9 +1,12 @@
 import { combineReducers } from 'redux';
 
-import forgotPasswordReducer from 'features/Auth/ForgotPassword/reducer';
-import resetPasswordReducer from 'features/Auth/ResetPassword/reducer';
-import signInReducer from 'features/Auth/SignIn/reducer';
-import signUpReducer from 'features/Auth/SignUp/reducer';
+import {
+  forgotPasswordReducer,
+  resetPasswordReducer,
+  signInReducer,
+  signUpReducer,
+  verifyEmailReducer,
+} from 'features/Auth/reducers';
 
 const rootReducer = combineReducers({
   auth: combineReducers({
@@ -11,6 +14,7 @@ const rootReducer = combineReducers({
     registration: signUpReducer,
     resetPassword: resetPasswordReducer,
     forgotPassword: forgotPasswordReducer,
+    verifyEmail: verifyEmailReducer,
   }),
 });
 

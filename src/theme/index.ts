@@ -7,6 +7,18 @@ const light = {
     gray500: '#2E2E2E',
     gray700: '#383838',
     gray900: '#777777',
+
+    // Teal
+    teal300: '#00796b',
+    teal500: '#00695c',
+
+    // Red
+    red300: '#FF4444',
+    red500: '#CC0000',
+
+    // Green
+    green300: '#00C851',
+    green500: '#007E33',
   },
   typography: {
     fontSizes: {

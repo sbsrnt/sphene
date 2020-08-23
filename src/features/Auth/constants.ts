@@ -3,3 +3,4 @@ export const SIGN_UP_USER = '[AUTH] SIGN_UP_USER';
 export const SIGN_OUT_USER = '[AUTH] SIGN_OUT_USER';
 export const RESET_PASSWORD = '[AUTH] RESET_PASSWORD';
 export const FORGOT_PASSWORD = '[AUTH] FORGOT_PASSWORD';
+export const VERIFY_EMAIL = '[AUTH] VERIFY_EMAIL';

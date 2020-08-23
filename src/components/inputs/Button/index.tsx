@@ -8,15 +8,16 @@ type Sizes = 'large' | 'medium' | 'small';
 
 type Button = {
   children: ReactNode;
-  as?: any;
-  to?: string;
-  variant?: Variants;
-  onClick?: () => void;
-  disabled?: boolean;
-  size?: Sizes;
-  block?: boolean;
-  dataId?: string;
-  isLoading?: boolean;
+  as: any;
+  to: string;
+  variant: Variants;
+  onClick: () => void;
+  disabled: boolean;
+  size: Sizes;
+  block: boolean;
+  dataId: string;
+  isLoading: boolean;
+  className: string;
 };
 
 const StyledButton = styled.div<{
@@ -36,6 +37,11 @@ const StyledButton = styled.div<{
   ${(props) => props.theme.button};
   ${(props) => props.theme.button.variant[props.variant]};
   ${(props) => props.theme.button.size[props.size]};
+
+  strong {
+    text-align: center;
+    width: 100%;
+  }
 `;
 
 const Button = ({
@@ -47,8 +53,9 @@ const Button = ({
   dataId,
   disabled = false,
   isLoading = false,
+  className = '',
   ...props
-}: Button) => (
+}: Partial<Button>) => (
   <StyledButton
     as={as}
     variant={variant}
@@ -57,6 +64,7 @@ const Button = ({
     data-cy={dataId}
     aria-disabled={disabled}
     disabled={disabled || isLoading}
+    className={className}
     {...props}
   >
     {isLoading ? <Loader /> : <Bold>{children}</Bold>}

@@ -13,7 +13,8 @@ export const PATHS = {
   SIGN_IN: '/sign-in',
   SIGN_UP: '/sign-up',
   FORGOT_PASSWORD: '/forgot-password',
-  VERIFY_EMAIL: '/verify/:token',
+  VERIFY_EMAIL: '/verify',
+  VERIFY_EMAIL_TOKEN: '/verify/:token',
   RESET_PASSWORD: '/reset-password',
   RESET_PASSWORD_TOKEN: '/reset-password/:token',
 };

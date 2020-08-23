@@ -5,12 +5,14 @@ import { ForgotPasswordState } from './ForgotPassword/reducer';
 import { ResetPasswordState } from './ResetPassword/reducer';
 import { UserState } from './SignIn/reducer';
 import { SignUpState } from './SignUp/reducer';
+import { VerifyEmailState } from './VerifyEmail/reducer';
 
 export type AuthState = {
   user: UserState;
   registration: SignUpState;
   forgotPassword: ForgotPasswordState;
   resetPassword: ResetPasswordState;
+  verifyEmail: VerifyEmailState;
 };
 
 const authSelector = (state: RootState) => state.auth;
@@ -30,4 +32,9 @@ export const getForgotPasswordSelector = createSelector(
 export const getResetPasswordSelector = createSelector(
   authSelector,
   (state: AuthState) => state.resetPassword
+);
+
+export const getVerifyEmailSelector = createSelector(
+  authSelector,
+  (state: AuthState) => state.verifyEmail
 );

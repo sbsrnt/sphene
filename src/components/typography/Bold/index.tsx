@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 type BoldProps = {
   children?: ReactNode;
+  onClick?: any;
 };
 
 const StyledBold = styled.strong`
@@ -10,8 +11,12 @@ const StyledBold = styled.strong`
   font-size: 16px;
 `;
 
-const Bold = ({ children, ...props }: BoldProps) => {
-  return <StyledBold {...props}>{children}</StyledBold>;
+const Bold = ({ children, onClick, ...props }: BoldProps) => {
+  return (
+    <StyledBold onClick={onClick} {...props}>
+      {children}
+    </StyledBold>
+  );
 };
 
 export default Bold;

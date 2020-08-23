@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { ReactComponent as Logo } from 'icons/Logo.svg';
-import { isArray } from 'lodash';
+import { filter, isArray } from 'lodash';
 import styled from 'styled-components';
 
 import { Column, Row } from 'components';

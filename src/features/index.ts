@@ -4,6 +4,7 @@ export { default as SignUp } from './Auth/SignUp';
 // export { default as ForgotPassword } from './Auth/ForgotPassword'; // View for inputting email
 export { default as ResetPassword } from './Auth/ResetPassword'; // View for inputting new password
 export { default as ForgotPassword } from './Auth/ForgotPassword';
+export { default as VerifyEmail } from './Auth/VerifyEmail';
 
 export { default as Dashboard } from './Dashboard/Dashboard';
 export { default as Invoicing } from './Invoicing';
