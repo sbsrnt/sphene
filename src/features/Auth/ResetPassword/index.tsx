@@ -1,12 +1,14 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import PATHS from 'constants/paths';
 import { Button, Column, FormField, Input, Link, Row } from 'components';
 
 import AuthContainer from '../Container';
+import { getResetPasswordSelector } from '../selectors';
 import { resetPasswordRequest } from './actions';
 
 type FormData = {
@@ -19,13 +21,13 @@ const ResetPassword = () => {
   const history = useHistory();
   const { token } = useParams();
   const dispatch = useDispatch();
+  const { isLoading } = useSelector(getResetPasswordSelector);
 
   const onSubmit: SubmitHandler<FormData> = (data: FormData) => {
     dispatch<any>(resetPasswordRequest({ token, data })).then(({ error }: any) => {
-      if (error) {
-        console.log(error);
-        return;
-      }
+      if (error) return toast.error(error.data.message);
+
+      toast.success('Password has been successfully reset!');
       history.push(PATHS.SIGN_IN);
     });
   };
@@ -38,6 +40,8 @@ const ResetPassword = () => {
             <FormField
               component={Input}
               name="newPassword"
+              dataId="new-password"
+              type="password"
               errors={errors}
               formRef={register({ required: true })}
               required
@@ -49,6 +53,8 @@ const ResetPassword = () => {
             <FormField
               component={Input}
               name="confirmNewPassword"
+              type="password"
+              dataId="confirm-new-password"
               errors={errors}
               formRef={register({ required: true })}
               required
@@ -57,11 +63,13 @@ const ResetPassword = () => {
         </Row>
         <Row>
           <Column>
-            <Button block>Reset Password</Button>
+            <Button block dataId="button-reset-password" isLoading={isLoading}>
+              Reset Password
+            </Button>
           </Column>
         </Row>
       </form>
-      <Button as={Link} to={PATHS.SIGN_IN}>
+      <Button as={Link} to={PATHS.SIGN_IN} dataId="button-go-back" disabled={isLoading}>
         Go Back
       </Button>
     </AuthContainer>

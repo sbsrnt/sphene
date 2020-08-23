@@ -1,13 +1,23 @@
 import { Reducer } from 'redux';
 import { apiErrorBinder, apiSuccessBinder, failure, success } from 'utils/actionHelpers';
 
+import { APIError } from 'types';
+
 import { FORGOT_PASSWORD } from '../constants';
+
+export type ForgotPasswordState = {
+  isLoading: boolean;
+  error?: APIError;
+};
 
 const initialState = {
   isLoading: false,
 };
 
-const ForgotPasswordReducer: Reducer = (state = initialState, { type, payload, error }) => {
+const ForgotPasswordReducer: Reducer<ForgotPasswordState> = (
+  state = initialState,
+  { type, payload, error }
+) => {
   switch (type) {
     case FORGOT_PASSWORD: {
       return {

@@ -1,7 +1,14 @@
 import { Reducer } from 'redux';
 import { apiErrorBinder, apiSuccessBinder, failure, success } from 'utils/actionHelpers';
 
+import { APIError } from 'types';
+
 import { RESET_PASSWORD } from '../constants';
+
+export type ResetPasswordState = {
+  isLoading: boolean;
+  error?: APIError;
+};
 
 const initialState = {
   isLoading: false,

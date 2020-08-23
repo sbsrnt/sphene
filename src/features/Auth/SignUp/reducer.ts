@@ -1,13 +1,20 @@
 import { Reducer } from 'redux';
 import { apiErrorBinder, apiSuccessBinder, failure, success } from 'utils/actionHelpers';
 
+import { APIError } from 'types';
+
 import { SIGN_UP_USER } from '../constants';
+
+export type SignUpState = {
+  isLoading: boolean;
+  error?: APIError;
+};
 
 const initialState = {
   isLoading: false,
 };
 
-const SignUpReducer: Reducer = (state = initialState, { type, payload, error }) => {
+const SignUpReducer: Reducer<SignUpState> = (state = initialState, { type, payload, error }) => {
   switch (type) {
     case SIGN_UP_USER: {
       return {

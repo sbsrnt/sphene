@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 
 import PATHS from 'constants/paths';
@@ -63,7 +63,10 @@ const GuestView = () => (
           <Route exact path={PATHS.SIGN_IN} component={SignIn} />
           <Route exact path={PATHS.FORGOT_PASSWORD} component={ForgotPassword} />
           <Route exact path={PATHS.VERIFY_EMAIL} component={SignIn} />
-          <Route exact path={PATHS.RESET_PASSWORD_TOKEN} component={ResetPassword} />
+          <Switch>
+            <Redirect exact from={PATHS.RESET_PASSWORD} to={PATHS.HOME} />
+            <Route exact path={PATHS.RESET_PASSWORD_TOKEN} component={ResetPassword} />
+          </Switch>
         </Wrapper>
       </GuestContainerRightColumn>
     </AuthContainer>

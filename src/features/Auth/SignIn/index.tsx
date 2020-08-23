@@ -40,11 +40,10 @@ const SignIn = () => {
 
   const onSubmit: SubmitHandler<FormData> = (data: FormData) => {
     dispatch<any>(signInUserRequest(data)).then(({ error }: any) => {
-      if (error) {
-        return toast.error(error.data.message);
-      }
+      if (error) return toast.error(error.data.message);
+
+      toast.success('Successfully signed in!');
       history.push(PATHS.DASHBOARD);
-      return toast.success('Successfully signed in!');
     });
   };
 

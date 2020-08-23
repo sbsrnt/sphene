@@ -1,13 +1,15 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import styled from 'styled-components';
 
 import PATHS from 'constants/paths';
 import { Button, Column, FormField, Input, Link, Row, Sublabel } from 'components';
 
 import AuthContainer from '../Container';
+import { getRegistrationSelector } from '../selectors';
 import { signUpUserRequest } from './actions';
 
 type FormData = {
@@ -26,9 +28,15 @@ const SignUp = () => {
   const { handleSubmit, register, errors } = useForm();
   const history = useHistory();
   const dispatch = useDispatch();
+  const { isLoading } = useSelector(getRegistrationSelector);
 
   const onSubmit: SubmitHandler<FormData> = (data: FormData) => {
-    dispatch<any>(signUpUserRequest(data)).then(() => history.push(PATHS.SIGN_IN));
+    dispatch<any>(signUpUserRequest(data)).then(({ error }: any) => {
+      if (error) return toast.error(error.data.message);
+
+      toast.success('Confirmation e-mail has been sent. Check your e-mail.');
+      history.push(PATHS.SIGN_IN);
+    });
   };
 
   return (
@@ -75,7 +83,7 @@ const SignUp = () => {
         </Row>
         <Row>
           <Column>
-            <Button block dataId="button-sign-up">
+            <Button block dataId="button-sign-up" disabled={isLoading}>
               Sign Up
             </Button>
           </Column>
@@ -83,7 +91,7 @@ const SignUp = () => {
       </form>
       <Footer>
         <Sublabel>Already have an account?</Sublabel>
-        <Button as={Link} to={PATHS.SIGN_IN} dataId="button-sign-in">
+        <Button as={Link} to={PATHS.SIGN_IN} dataId="button-sign-in" isLoading={isLoading}>
           Sign In
         </Button>
       </Footer>

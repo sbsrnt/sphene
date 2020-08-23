@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
@@ -18,7 +18,7 @@ const Li = styled(motion.li)`
     &:hover,
     &:visited,
     &:link {
-      color: ${(props) => props.theme.colors.secondary};
+      color: ${(props) => props.theme.colors.smokewhite};
       text-decoration: none;
     }
 
@@ -32,6 +32,7 @@ const Li = styled(motion.li)`
       &:hover,
       &:visited,
       &:link {
+        background: ${(props) => props.theme.colors.white}20;
         color: ${(props) => props.theme.colors.white};
       }
     }
@@ -53,7 +54,7 @@ export type ListItem = {
   label: string;
 };
 
-const ListItem: FC<ListItem> = ({ path, icon, label }) => {
+const ListItem = ({ path, icon, label }: ListItem) => {
   return (
     <Li variants={item}>
       <NavLink to={path} activeClassName="active">

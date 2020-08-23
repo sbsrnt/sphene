@@ -14,7 +14,8 @@
     "babel-eslint": "^10.1.0",
     "babel-plugin-styled-components": "^1.10.7",
     "concurrently": "^5.2.0",
-    "cypress": "^4.12.1",
+    "cypress": "^5.0.0",
+    "cypress-intellij-reporter": "^0.0.4",
     "electron": "^9.0.0",
     "electron-builder": "^22.7.0",
     "eslint-config-prettier": "^6.11.0",
@@ -78,7 +79,9 @@
     "electron:dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && tsc -p build/electron -w\" \"wait-on http://localhost:3000 && tsc -p electron && electron .\"",
     "electron:build": "yarn build && electron-builder",
     "eject": "react-scripts eject",
-    "cy": "cypress open"
+    "cy": "cypress open",
+    "db:seed": "yarn --cwd ../api-sphene run seed:run",
+    "db:drop": "yarn --cwd ../api-sphene run schema:drop"
   },
   "build": {
     "appId": "sphene",
