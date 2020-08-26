@@ -14,11 +14,12 @@ export const signUp = () => {
   signUpPage.buttonSignUp.click();
 
   signUpPage.buttonSignUp.should('be.disabled');
-  signUpPage.buttonSignUp.should('have.attr', 'aria-disabled', 'true');
+  signUpPage.buttonSignIn.should('have.attr', 'aria-disabled', 'true');
 
   cy.wait('@newUser').should((res) => {
     expect(res.status).to.eq(201);
   });
+
   cy.isUrl(PATHS.SIGN_IN);
   cy.toastMsg('Confirmation e-mail has been sent. Check your e-mail.');
 };
