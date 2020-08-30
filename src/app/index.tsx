@@ -18,7 +18,7 @@ function App() {
       {!isLoading && (
         <Router>
           {!isAuthenticated && <GuestView />}
-          {isAuthenticated && <UserView />}
+          <UserView />
         </Router>
       )}
       <PageLoader visible={isLoading} />
