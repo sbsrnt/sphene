@@ -27,18 +27,38 @@ const StyledPage = styled.div`
 const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 0.5em;
-  align-items: center;
+  align-items: end;
+  height: calc(40px + 2em);
+`;
+
+const StyledPageBody = styled.div`
+  height: calc(100% - 40px - 2em);
+  overflow: auto;
+  overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: ${(props) => props.theme.colors.gray700};
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: ${(props) => props.theme.colors.smokewhite};
+    border-radius: 20px;
+  }
 `;
 
 const Page = ({ children, title, actions }: Page) => (
   <ThemeProvider>
     <StyledPage>
       <HeaderWrapper>
-        <h2>{title}</h2>
+        <h1>{title}</h1>
         {!!actions && <PageActions>{actions}</PageActions>}
       </HeaderWrapper>
-      {children}
+      <StyledPageBody>{children}</StyledPageBody>
     </StyledPage>
   </ThemeProvider>
 );
