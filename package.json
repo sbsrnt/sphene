@@ -56,7 +56,6 @@
     "framer-motion": "^1.11.0",
     "lodash": "^4.17.15",
     "react": "^16.13.1",
-    "react-calendar": "^3.1.0",
     "react-dom": "^16.13.1",
     "react-dropzone": "^11.0.1",
     "react-hook-form": "^6.3.0",

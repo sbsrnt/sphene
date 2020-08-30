@@ -1,47 +1,30 @@
-import React, { FC, useState } from 'react';
-import Calendar from 'react-calendar';
-import { format } from 'date-fns';
-import startOfToday from 'date-fns/startOfToday';
+import React from 'react';
+import { getYear } from 'date-fns';
 import styled from 'styled-components';
 
-import { Input } from 'components/index';
-
-const CalendarContainer = styled.div`
-  margin-top: 10px;
+const StyledDatePicker = styled.input`
+  padding: 3px 0;
+  border: 0;
+  outline: none;
+  border-bottom: 1px solid ${(props) => props.theme.colors.gray100};
+  font-size: ${(props) => props.theme.typography.fontSizes.default};
+  font-family: 'Roboto', sans-serif;
 `;
 
 type DatePicker = {
   formRef?: any;
-  value?: Date;
 };
 
-const DatePicker: FC<DatePicker> = ({ formRef, value, ...props }) => {
-  console.log({ value });
-  const today = startOfToday();
-  const [isVisible, setIsVisible] = useState(false);
-  const [pickedDate, setPickedDate] = useState(value || today);
-  const toggleCalendar = () => setIsVisible((isVisible) => !isVisible);
-
-  const handleDateClick = (date: Date) => {
-    setPickedDate(date);
-    setIsVisible(false);
-  };
-
+const DatePicker = ({ formRef, ...props }: DatePicker) => {
+  const currentYear = getYear(new Date());
   return (
-    <>
-      <Input
-        formRef={formRef}
-        {...props}
-        onFocus={toggleCalendar}
-        value={format(new Date(pickedDate), 'do MMMM')}
-        readOnly
-      />
-      {isVisible && (
-        <CalendarContainer>
-          <Calendar onClickDay={handleDateClick} defaultView="month" minDetail="month" />
-        </CalendarContainer>
-      )}
-    </>
+    <StyledDatePicker
+      type="date"
+      ref={formRef}
+      {...props}
+      min={`${currentYear}-01-01`}
+      max={`${currentYear}-12-31`}
+    />
   );
 };
 
