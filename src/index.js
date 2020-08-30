@@ -24,6 +24,12 @@ const client = axios.create({
 
 const axiosMiddlewareConfig = {
   interceptors: {
+    request: [
+      (_, req) => {
+        req.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
+        return req;
+      },
+    ],
     response: [
       {
         success: (_, res) => Promise.resolve(res.data),
