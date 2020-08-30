@@ -7,6 +7,7 @@ import {
   signUpReducer,
   verifyEmailReducer,
 } from 'features/Auth/reducers';
+import remindersReducer from 'features/Reminders/reducer';
 
 const rootReducer = combineReducers({
   auth: combineReducers({
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
     forgotPassword: forgotPasswordReducer,
     verifyEmail: verifyEmailReducer,
   }),
+  reminders: remindersReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
