@@ -5,17 +5,17 @@ import styled from 'styled-components';
 
 import { backdrop, modal } from './animations';
 import Backdrop from './Backdrop';
-import ModalActions, { ModalActions as ModalActionsType } from './ModalActions';
-import ModalBody, { ModalBody as ModalBodyType } from './ModalBody';
+import ModalActions, { ModalActionsProps } from './ModalActions';
+import ModalBody, { ModalBodyProps } from './ModalBody';
 import ModalHeader from './ModalHeader';
 
 type Modal = {
   isOpen: boolean;
   toggleModal: () => void;
-  title: string;
+  title?: ReactNode | string;
   children: ReactNode;
-  Body?: ModalBodyType;
-  Actions?: ModalActionsType;
+  Body?: ModalBodyProps;
+  Actions?: ModalActionsProps;
 };
 
 const ModalWrapper = styled(motion.div)`
@@ -32,13 +32,17 @@ const ModalWrapper = styled(motion.div)`
 
 const StyledModal = styled(motion.div)`
   padding: 1em;
-  max-height: 600px;
+  max-height: 800px;
   background: ${(props) => props.theme.colors.white};
   color: ${(props) => props.theme.colors.gray300};
   max-width: 400px;
   position: relative;
   z-index: 3;
   min-width: 400px;
+  min-height: 400px;
+  transform: none;
+  display: grid;
+  grid-template-rows: 40px 1fr 40px;
 `;
 
 const Modal = ({ isOpen = false, toggleModal, title, children }: Modal) => {

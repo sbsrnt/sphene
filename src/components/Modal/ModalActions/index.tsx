@@ -1,9 +1,9 @@
-import React, { FC, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 
-export type ModalActions = {
+export type ModalActionsProps = {
   children: ReactNode;
 };
 
-const ModalActions: FC<ModalActions> = ({ children }) => <div>{children}</div>;
+const ModalActions = ({ children }: ModalActionsProps) => <div>{children}</div>;
 
 export default ModalActions;
