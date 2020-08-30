@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { ThemeProvider } from 'context-providers';
 
-import PageActions from './PageActions';
+import PageActions from './PageActions/PageActions';
 
 type Page = {
   children: ReactNode;

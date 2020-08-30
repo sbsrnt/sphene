@@ -4,10 +4,10 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 import { backdrop, modal } from './animations';
-import Backdrop from './Backdrop';
-import ModalActions, { ModalActionsProps } from './ModalActions';
-import ModalBody, { ModalBodyProps } from './ModalBody';
-import ModalHeader from './ModalHeader';
+import Backdrop from './Backdrop/Backdrop';
+import ModalActions, { ModalActionsProps } from './ModalActions/ModalActions';
+import ModalBody, { ModalBodyProps } from './ModalBody/ModalBody';
+import ModalHeader from './ModalHeader/ModalHeader';
 
 type Modal = {
   isOpen: boolean;
