@@ -1,8 +1,8 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 import { ThemeProvider } from 'context-providers';
+import { AnimatedList } from 'components';
 import { NAV_FEATURES } from 'features';
 
 import type { ListItem as ListItemType } from './ListItem';
@@ -17,25 +17,13 @@ const Nav = styled.nav`
   grid-template-rows: calc(100% - 100px);
 `;
 
-const List = styled(motion.ul)`
-  height: 100%;
-`;
+const StyledNavItem = styled(AnimatedList.Item)`
+  margin-top: 10px;
 
-const variants = {
-  visible: {
-    opacity: 1,
-    transition: {
-      when: 'beforeChildren',
-      staggerChildren: 0.1,
-    },
-  },
-  hidden: {
-    opacity: 0,
-    transition: {
-      when: 'afterChildren',
-    },
-  },
-};
+  &:first-child {
+    margin-top: 0;
+  }
+`;
 
 const NavSidebar = () => {
   // const { isAuthenticated, loginWithRedirect, logout } = useAuth();
@@ -43,7 +31,7 @@ const NavSidebar = () => {
   return (
     <ThemeProvider>
       <Nav>
-        <List variants={variants} initial="hidden" animate="visible">
+        <AnimatedList>
           {/*<ListItem onClick={isAuthenticated ? logout : loginWithRedirect}>*/}
           {/*  <Link to={isAuthenticated ? '/logout' : '/login'}>*/}
           {/*    <i className="material-icons">login</i>*/}
@@ -51,9 +39,11 @@ const NavSidebar = () => {
           {/*  </Link>*/}
           {/*</ListItem>*/}
           {NAV_FEATURES.map((f: ListItemType, i: number) => (
-            <ListItem key={`nav_${i}`} {...f} />
+            <StyledNavItem key={`nav_${i}`}>
+              <ListItem {...f} />
+            </StyledNavItem>
           ))}
-        </List>
+        </AnimatedList>
       </Nav>
     </ThemeProvider>
   );
