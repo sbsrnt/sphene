@@ -28,8 +28,9 @@ const SignInReducer: Reducer<UserState> = (state = initialState, { type, payload
 
     case success(SIGN_IN_USER): {
       const { access_token } = apiSuccessBinder(payload);
-      localStorage.setItem('token', access_token);
-
+      if (!localStorage.getItem('token')) {
+        localStorage.setItem('token', access_token);
+      }
       return {
         ...state,
         ...apiSuccessBinder(payload),
