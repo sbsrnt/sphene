@@ -32,7 +32,7 @@ const light = {
     },
   },
   button: {
-    border: 0,
+    border: '1px solid transparent',
     variant: {
       none: {
         color: '#999',
