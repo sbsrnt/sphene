@@ -23,9 +23,13 @@ interface RefObject<T> {
 }
 
 export type APIError = {
-  error: {
-    error: string;
-    message: string;
-    code: number;
-  };
+  error:
+    | {
+        error: string;
+        message: string;
+        code: number;
+      }
+    | string;
+  message?: string;
+  code?: number;
 };

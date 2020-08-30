@@ -4,17 +4,7 @@ import { apiErrorBinder, apiSuccessBinder, failure, success } from 'utils/action
 import { APIError } from 'types';
 
 import { CREATE_REMINDER, GET_ALL_REMINDERS } from './constants';
-
-type Reminder = {
-  _id: string;
-  createdAt: Date;
-  updatedAt: Date;
-  remindAt: Date;
-  type: number;
-  occurrence: number;
-  description: string;
-  title: string;
-};
+import { Reminder } from './RemindersList/Reminder';
 
 export type CreateReminderState = {
   isLoading: boolean;
