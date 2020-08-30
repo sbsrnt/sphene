@@ -6,6 +6,8 @@ export { default as Checkbox } from './inputs/Checkbox';
 export { default as DatePicker } from './inputs/DatePicker';
 export { default as Dropzone } from './inputs/Dropzone';
 export { default as Input } from './inputs/Input';
+export { default as Select } from './inputs/Select/Select';
+export { default as TimePicker } from './inputs/TimePicker/TimePicker';
 
 /**
  * Typography components
@@ -27,6 +29,11 @@ export { default as Row } from './Grid/Row';
  * Authorization / Route components
  */
 export { default as UserRoute } from './routes/UserRoute';
+
+/**
+ * Animated Components
+ */
+export { default as AnimatedList } from './animated/AnimatedList/AnimatedList';
 
 /**
  * Misc
