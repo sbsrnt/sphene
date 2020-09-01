@@ -39,7 +39,7 @@ const ForgotPassword = () => {
               component={Input}
               name="email"
               errors={errors}
-              formRef={register({ required: true })}
+              formRef={register}
               dataId="email"
               required
             />

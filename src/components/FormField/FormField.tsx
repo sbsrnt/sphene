@@ -59,7 +59,7 @@ const FormField = ({
       <T
         id={name}
         name={name}
-        formRef={formRef}
+        formRef={formRef ? formRef({ required }) : null}
         control={control}
         data-cy={`input-${dataId}`}
         {...props}

@@ -43,7 +43,7 @@ const ResetPassword = () => {
               dataId="new-password"
               type="password"
               errors={errors}
-              formRef={register({ required: true })}
+              formRef={register}
               required
             />
           </Column>
@@ -56,7 +56,7 @@ const ResetPassword = () => {
               type="password"
               dataId="confirm-new-password"
               errors={errors}
-              formRef={register({ required: true })}
+              formRef={register}
               required
             />
           </Column>

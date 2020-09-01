@@ -49,7 +49,7 @@ const SignUp = () => {
               name="email"
               errors={errors}
               placeholder="jon@smith.com"
-              formRef={register({ required: true })}
+              formRef={register}
               dataId="email"
               required
             />
@@ -62,7 +62,7 @@ const SignUp = () => {
               name="confirmEmail"
               errors={errors}
               placeholder="jon@smith.com"
-              formRef={register({ required: true })}
+              formRef={register}
               dataId="confirm-email"
               required
             />
@@ -75,7 +75,7 @@ const SignUp = () => {
               name="password"
               type="password"
               errors={errors}
-              formRef={register({ required: true })}
+              formRef={register}
               dataId="password"
               required
             />

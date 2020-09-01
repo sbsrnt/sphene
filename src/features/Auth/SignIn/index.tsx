@@ -57,7 +57,7 @@ const SignIn = () => {
               name="email"
               errors={errors}
               placeholder="jon@smith.com"
-              formRef={register({ required: true })}
+              formRef={register}
               dataId="email"
               required
             />
@@ -70,7 +70,7 @@ const SignIn = () => {
               name="password"
               type="password"
               errors={errors}
-              formRef={register({ required: true })}
+              formRef={register}
               dataId="password"
               required
             />

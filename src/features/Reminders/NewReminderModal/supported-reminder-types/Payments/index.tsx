@@ -19,8 +19,9 @@ const PaymentsReminder = ({ control, register, errors, disabled }: PaymentsRemin
           name="title"
           errors={errors}
           placeholder="ex. Tax Payment"
-          formRef={register({ required: true })}
+          formRef={register}
           disabled={disabled}
+          dataId="title"
           required
         />
       </Column>
@@ -32,9 +33,9 @@ const PaymentsReminder = ({ control, register, errors, disabled }: PaymentsRemin
           placeholder="ex. One week left for the payment buddy."
           name="description"
           errors={errors}
-          formRef={register({ required: true })}
+          formRef={register}
           disabled={disabled}
-          required
+          dataId="description"
         />
       </Column>
     </Row>
@@ -44,8 +45,9 @@ const PaymentsReminder = ({ control, register, errors, disabled }: PaymentsRemin
           component={DatePicker}
           name="remindAt"
           errors={errors}
-          formRef={register({ required: true })}
+          formRef={register}
           disabled={disabled}
+          dataId="remindAt"
           required
         />
       </Column>
@@ -54,8 +56,9 @@ const PaymentsReminder = ({ control, register, errors, disabled }: PaymentsRemin
           component={TimePicker}
           name="remindOn"
           errors={errors}
-          formRef={register({ required: true })}
+          formRef={register}
           disabled={disabled}
+          dataId="remindOn"
           required
         />
       </Column>
@@ -69,6 +72,7 @@ const PaymentsReminder = ({ control, register, errors, disabled }: PaymentsRemin
           errors={errors}
           control={control}
           disabled={disabled}
+          dataId="occurrence"
           required
         />
       </Column>
