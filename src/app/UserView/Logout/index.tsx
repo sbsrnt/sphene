@@ -79,7 +79,7 @@ const Logout = () => {
 
   return (
     <MainTooltip>
-      <MenuBarBtn onClick={handleLogout}>
+      <MenuBarBtn onClick={handleLogout} data-cy="signOut">
         <i className="material-icons login" />
         <TooltipText className="tooltiptext">Logout</TooltipText>
       </MenuBarBtn>

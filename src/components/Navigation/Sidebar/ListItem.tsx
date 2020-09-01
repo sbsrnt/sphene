@@ -43,7 +43,7 @@ export type ListItem = {
 };
 
 const ListItem = ({ path, icon, label }: ListItem) => (
-  <StyledNavLink to={path} activeClassName="active">
+  <StyledNavLink to={path} activeClassName="active" data-cy={`nav-${label}`}>
     <i className="material-icons-outlined">{icon}</i>
     <span>{label}</span>
   </StyledNavLink>

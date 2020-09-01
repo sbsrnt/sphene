@@ -30,7 +30,7 @@ const RemindersList = () => {
       {emptyReminders && <Body>There are no reminders. Add one.</Body>}
       {isError && <Body>Something went wrong with fetching reminders.</Body>}
       {!isLoading && reminders.length > 0 && (
-        <StyledRemindersList>
+        <StyledRemindersList data-cy="list-reminders">
           {reminders.map((reminder) => (
             <AnimatedList.Item key={reminder._id}>
               <Reminder {...reminder} />

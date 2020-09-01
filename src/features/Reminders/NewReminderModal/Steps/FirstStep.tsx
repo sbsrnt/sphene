@@ -22,13 +22,18 @@ const FirstStep = ({ setActiveStep, setActiveReminder, toggleModal }: any) => {
         <StyledReminderTypes>
           {supportedReminderTypes.map((reminder) => (
             <AnimatedList.Item key={reminder.reminderType} animation="fromTop">
-              <Button onClick={() => handleReminderClick(reminder)}>{reminder.reminderType}</Button>
+              <Button
+                onClick={() => handleReminderClick(reminder)}
+                dataId={`button-${reminder.reminderType}`}
+              >
+                {reminder.reminderType}
+              </Button>
             </AnimatedList.Item>
           ))}
         </StyledReminderTypes>
       </Modal.Body>
       <Modal.Actions>
-        <Button onClick={toggleModal} variant="bordered">
+        <Button onClick={toggleModal} variant="bordered" dataId="button-cancel">
           Cancel
         </Button>
       </Modal.Actions>

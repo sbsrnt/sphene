@@ -7,7 +7,7 @@ import RemindersList from './RemindersList/RemindersList';
 
 const Actions = ({ toggleModal }: { toggleModal: () => void }) => (
   <>
-    <Button variant="success" onClick={toggleModal}>
+    <Button variant="success" onClick={toggleModal} dataId="button-createNewReminder">
       New Reminder
     </Button>
   </>

@@ -31,6 +31,10 @@ const StyledLabelWrapper = styled.div`
   }
 `;
 
+const StyledButtons = styled.div`
+  display: flex;
+`;
+
 const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -46,6 +50,10 @@ const SecondStep = ({ setActiveStep, toggleModal, reminderValue, children }: any
     setIsCreateNewReminderToggled((toggled) => !toggled);
   };
   const handleGoBackClick = () => setActiveStep(1);
+  const handleCancelClick = () => {
+    toggleModal();
+    setActiveStep(1);
+  };
 
   const onSubmit = ({ remindAt, remindOn, ...data }: any) => {
     const formattedRemindAt = new Date(`${remindAt}T${remindOn}:00`);
@@ -72,23 +80,34 @@ const SecondStep = ({ setActiveStep, toggleModal, reminderValue, children }: any
             id="reset-reminder"
             checked={isCreateNewReminderToggled}
             onChange={handleCreateNewReminderToggle}
+            dataId="checkbox-createNewReminder"
           />
           <label htmlFor="reset-reminder">Create new reminder?</label>
         </StyledLabelWrapper>
       </Modal.Body>
       <Modal.Actions>
         <StyledActions>
-          <Button onClick={toggleModal} variant="none" disabled={isCreating}>
+          <Button
+            onClick={handleCancelClick}
+            variant="none"
+            disabled={isCreating}
+            dataId="button-cancel"
+          >
             Cancel
           </Button>
-          <div>
-            <Button onClick={handleGoBackClick} variant="bordered" disabled={isCreating}>
+          <StyledButtons>
+            <Button
+              onClick={handleGoBackClick}
+              variant="bordered"
+              disabled={isCreating}
+              dataId="button-go-back"
+            >
               Go Back
             </Button>
-            <Button onClick={handleSubmit(onSubmit)} isLoading={isCreating}>
+            <Button onClick={handleSubmit(onSubmit)} isLoading={isCreating} dataId="button-submit">
               Submit
             </Button>
-          </div>
+          </StyledButtons>
         </StyledActions>
       </Modal.Actions>
     </>

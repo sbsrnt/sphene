@@ -1,11 +1,14 @@
 import React from 'react';
 import { Controller } from 'react-hook-form';
 import ReactSelect from 'react-select';
+
 type SelectProps = {
   required?: boolean;
   options: any[];
   control: any;
   name: string;
+  id?: string;
+  'data-cy'?: string;
 };
 
 const selectStyles = {
@@ -48,14 +51,14 @@ const selectStyles = {
   }),
 };
 
-const Select = ({ control, options, required = true, name, ...props }: SelectProps) => {
-  return (
-    <Controller
-      rules={{ required }}
-      control={control}
-      name={name}
-      {...props}
-      render={({ onChange, onBlur }) => (
+const Select = ({ control, options, required = true, name, id, ...props }: SelectProps) => (
+  <Controller
+    rules={{ required }}
+    control={control}
+    name={name}
+    {...props}
+    render={({ onChange, onBlur }) => (
+      <div data-cy={`select-${name}`}>
         <ReactSelect
           styles={selectStyles}
           options={options}
@@ -63,9 +66,9 @@ const Select = ({ control, options, required = true, name, ...props }: SelectPro
           onBlur={onBlur}
           name={name}
         />
-      )}
-    />
-  );
-};
+      </div>
+    )}
+  />
+);
 
 export default Select;

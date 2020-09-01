@@ -13,7 +13,7 @@ type NewReminderModalProps = {
 };
 
 const NewReminderModal = ({ toggleModal, isOpen }: NewReminderModalProps) => {
-  const [activeStep, setActiveStep] = useState<1 | 2>(2);
+  const [activeStep, setActiveStep] = useState<1 | 2>(1);
   const [{ reminderType, reminderValue, ReminderComponent }, setActiveReminder] = useState<{
     reminderType: string;
     reminderValue: number;
@@ -25,6 +25,7 @@ const NewReminderModal = ({ toggleModal, isOpen }: NewReminderModalProps) => {
       isOpen={isOpen}
       toggleModal={toggleModal}
       title={<ModalTitle activeStep={activeStep} reminderType={reminderType} />}
+      dataId="modal-createNewReminder"
     >
       {activeStep === 1 && (
         <FirstStep

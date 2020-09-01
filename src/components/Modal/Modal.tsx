@@ -16,6 +16,7 @@ type Modal = {
   children: ReactNode;
   Body?: ModalBodyProps;
   Actions?: ModalActionsProps;
+  dataId?: string;
 };
 
 const ModalWrapper = styled(motion.div)`
@@ -45,11 +46,17 @@ const StyledModal = styled(motion.div)`
   grid-template-rows: 40px 1fr 40px;
 `;
 
-const Modal = ({ isOpen = false, toggleModal, title, children }: Modal) => {
+const Modal = ({ isOpen = false, toggleModal, title, children, dataId }: Modal) => {
   return (
     <AnimatePresence exitBeforeEnter>
       {isOpen && (
-        <ModalWrapper variants={backdrop} animate="visible" initial="hidden" exit="hidden">
+        <ModalWrapper
+          variants={backdrop}
+          animate="visible"
+          initial="hidden"
+          exit="hidden"
+          data-cy={dataId}
+        >
           <Backdrop onClick={toggleModal} />
           <StyledModal variants={modal}>
             <ModalHeader>{title}</ModalHeader>

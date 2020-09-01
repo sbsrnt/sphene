@@ -1,4 +1,4 @@
-import { cleanupAndSeedData, cleanupData, getId, mockRoute, isUrl, toastMsg } from './index';
+import { cleanupAndSeedData, cleanupData, getId, getSelect, getSelectValue, mockRoute, isUrl, toastMsg, signIn, signOut } from './index';
 
 /// <reference types="cypress" />
 declare global {
@@ -9,6 +9,19 @@ declare global {
        * @example cy.getId('greeting')
        */
       getId: typeof getId;
+
+      /**
+       * Custom command to select Select DOM element.
+       * @example cy.getSelect('greeting')
+       */
+      getSelect: typeof getSelect;
+
+      /**
+       * Custom command to select Select DOM element's value/option.
+       * @example cy.getSelectValue('greeting', 3)
+       * where "3" indicates option index, so it would take 4th value from the options list
+       */
+      getSelectValue: typeof getSelectValue;
 
       /**
        * Custom command to mock client route.
@@ -39,6 +52,18 @@ declare global {
        * @example cy.contains('toast message')
        */
       toast: typeof toastMsg;
+
+      /**
+       * Custom command to Sign In
+       * @example cy.signIn()
+       */
+      signIn: typeof signIn()
+
+      /**
+       * Custom command to Sign Out
+       * @example cy.signOut()
+       */
+      signOut: typeof signOut()
     }
   }
 }
