@@ -17,6 +17,10 @@ type FormField = {
   options?: any[];
   animated?: boolean;
   disabled?: boolean;
+  defaultValue?: {
+    label: string | number;
+    value: string | number;
+  };
 };
 
 const Field = styled.div`
