@@ -3,10 +3,15 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import styled from 'styled-components';
+import { occurrenceParser } from 'utils/occurrenceParser';
 
 import { Button, Checkbox, Modal } from 'components';
-import { createReminderRequest } from 'features/Reminders/actions';
-import { getRemindersCreatingStatusSelector } from 'features/Reminders/selectors';
+import { createReminderRequest, updateReminderRequest } from 'features/Reminders/actions';
+import {
+  getActiveReminderSelector,
+  getFormActiveReminderSelector,
+  getRemindersCreatingStatusSelector,
+} from 'features/Reminders/selectors';
 
 const StyledActions = styled.div`
   display: flex;
@@ -41,39 +46,62 @@ const Form = styled.form`
 `;
 
 const SecondStep = ({ setActiveStep, toggleModal, reminderValue, children }: any) => {
-  const [isCreateNewReminderToggled, setIsCreateNewReminderToggled] = useState(false);
-  const { control, handleSubmit, register, errors, reset } = useForm();
   const dispatch = useDispatch();
+  const defaultValues = useSelector(getFormActiveReminderSelector);
+  const activeReminder = useSelector(getActiveReminderSelector);
   const isCreating = useSelector(getRemindersCreatingStatusSelector);
+  const [isCreateNewReminderToggled, setIsCreateNewReminderToggled] = useState(false);
+  const { control, handleSubmit, register, errors, reset } = useForm({ defaultValues });
 
   const handleCreateNewReminderToggle = () => {
     setIsCreateNewReminderToggled((toggled) => !toggled);
   };
+
   const handleGoBackClick = () => setActiveStep(1);
+
   const handleCancelClick = () => {
     toggleModal();
     setActiveStep(1);
   };
 
-  const onSubmit = ({ remindAt, remindOn, ...data }: any) => {
+  const onSubmit = ({ remindAt, remindOn, occurrence, ...data }: any) => {
     const formattedRemindAt = new Date(`${remindAt}T${remindOn}:00`);
+    const parsedOccurrence =
+      typeof occurrence === 'string' ? occurrenceParser(occurrence)?.value : occurrence;
 
-    dispatch<any>(
-      createReminderRequest({ type: reminderValue, remindAt: formattedRemindAt, ...data })
-    ).then(({ error }: any) => {
+    const preparedData = {
+      type: reminderValue,
+      remindAt: formattedRemindAt,
+      occurrence: parsedOccurrence,
+      ...data,
+    };
+
+    const followUp = ({ error }: any) => {
       if (error) return toast.error(error.data.message);
 
       toast.success('Successfully created reminder!');
       isCreateNewReminderToggled && reset();
       !isCreateNewReminderToggled && toggleModal();
-    });
+    };
+
+    if (activeReminder)
+      dispatch<any>(updateReminderRequest({ _id: activeReminder._id, ...preparedData })).then(
+        followUp
+      );
+    else dispatch<any>(createReminderRequest(preparedData)).then(followUp);
   };
 
   return (
     <>
       <Modal.Body>
         <Form>
-          {React.cloneElement(children, { control, register, errors, disabled: isCreating })}
+          {React.cloneElement(children, {
+            control,
+            register,
+            errors,
+            disabled: isCreating,
+            defaultValues,
+          })}
         </Form>
         <StyledLabelWrapper>
           <Checkbox

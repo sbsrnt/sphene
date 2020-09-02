@@ -8,12 +8,16 @@ import { getAllRemindersRequest } from '../actions';
 import { getRemindersStateSelector } from '../selectors';
 import Reminder from './Reminder';
 
+type RemindersList = {
+  toggleModal: () => void;
+};
+
 const StyledRemindersList = styled(AnimatedList)`
   display: flex;
   flex-wrap: wrap;
 `;
 
-const RemindersList = () => {
+const RemindersList = ({ toggleModal }: RemindersList) => {
   const dispatch = useDispatch();
   const { isLoading, error, reminders } = useSelector(getRemindersStateSelector);
 
@@ -33,7 +37,7 @@ const RemindersList = () => {
         <StyledRemindersList data-cy="list-reminders">
           {reminders.map((reminder) => (
             <AnimatedList.Item key={reminder._id}>
-              <Reminder {...reminder} />
+              <Reminder toggleModal={toggleModal} {...reminder} />
             </AnimatedList.Item>
           ))}
         </StyledRemindersList>

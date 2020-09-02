@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { Button, Page } from 'components';
 
+import { setActiveReminder } from './actions';
 import NewReminderModal from './NewReminderModal';
 import RemindersList from './RemindersList/RemindersList';
 
@@ -15,8 +17,12 @@ const Actions = ({ toggleModal }: { toggleModal: () => void }) => (
 
 const Reminders = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
 
-  const toggleModal = () => setIsOpen((isOpen) => !isOpen);
+  const toggleModal = () => {
+    isOpen && dispatch(setActiveReminder(null));
+    setIsOpen((isOpen) => !isOpen);
+  };
 
   // const click = () => {
   //   const s = new Notification('XD', {
@@ -29,7 +35,7 @@ const Reminders = () => {
   // };
   return (
     <Page title="Reminders" actions={<Actions toggleModal={toggleModal} />}>
-      <RemindersList />
+      <RemindersList toggleModal={toggleModal} />
       <NewReminderModal toggleModal={toggleModal} isOpen={isOpen} />
     </Page>
   );

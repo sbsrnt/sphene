@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
 type CardProps = {
-  children: ReactNode;
+  children?: ReactNode;
 };
 
 const StyledCard = styled.div`

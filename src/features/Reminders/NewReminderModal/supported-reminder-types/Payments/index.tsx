@@ -1,4 +1,5 @@
 import React from 'react';
+import { occurrenceParser } from 'utils/occurrenceParser';
 
 import { occurrences } from 'constants/occurrences';
 import { Column, DatePicker, FormField, Input, Row, Select, TimePicker } from 'components';
@@ -8,9 +9,16 @@ export type PaymentsReminderProps = {
   disabled: boolean;
   register: (props: { required?: boolean }) => void;
   errors: any;
+  defaultValues: any;
 };
 
-const PaymentsReminder = ({ control, register, errors, disabled }: PaymentsReminderProps) => (
+const PaymentsReminder = ({
+  control,
+  register,
+  errors,
+  disabled,
+  defaultValues,
+}: PaymentsReminderProps) => (
   <>
     <Row>
       <Column>
@@ -73,6 +81,7 @@ const PaymentsReminder = ({ control, register, errors, disabled }: PaymentsRemin
           control={control}
           disabled={disabled}
           dataId="occurrence"
+          defaultValue={occurrenceParser(defaultValues.occurrence)}
           required
         />
       </Column>

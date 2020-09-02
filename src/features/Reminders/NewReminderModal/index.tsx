@@ -1,7 +1,9 @@
 import React, { ComponentType, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import { Modal } from 'components';
 
+import { getActiveReminderSelector } from '../selectors';
 import ModalTitle from './ModalTitle/ModalTitle';
 import FirstStep from './Steps/FirstStep';
 import SecondStep from './Steps/SecondStep';
@@ -13,7 +15,8 @@ type NewReminderModalProps = {
 };
 
 const NewReminderModal = ({ toggleModal, isOpen }: NewReminderModalProps) => {
-  const [activeStep, setActiveStep] = useState<1 | 2>(1);
+  const activeReminder = useSelector(getActiveReminderSelector);
+  const [activeStep, setActiveStep] = useState<1 | 2>(activeReminder ? 2 : 1);
   const [{ reminderType, reminderValue, ReminderComponent }, setActiveReminder] = useState<{
     reminderType: string;
     reminderValue: number;
