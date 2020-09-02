@@ -5,6 +5,7 @@ import styled from 'styled-components';
 export type AnimatedItemProps = {
   animation?: 'fromLeft' | 'fromTop';
   children: ReactNode;
+  onClick?: () => void;
 };
 
 const StyledDiv = styled(motion.div)``;
