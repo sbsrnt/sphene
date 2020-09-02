@@ -9,6 +9,10 @@ type SelectProps = {
   name: string;
   id?: string;
   'data-cy'?: string;
+  defaultValue?: {
+    label: string | number;
+    value: string | number;
+  };
 };
 
 const selectStyles = {
@@ -51,7 +55,15 @@ const selectStyles = {
   }),
 };
 
-const Select = ({ control, options, required = true, name, id, ...props }: SelectProps) => (
+const Select = ({
+  control,
+  options,
+  required = true,
+  name,
+  id,
+  defaultValue,
+  ...props
+}: SelectProps) => (
   <Controller
     rules={{ required }}
     control={control}
@@ -65,6 +77,7 @@ const Select = ({ control, options, required = true, name, id, ...props }: Selec
           onChange={(option: any) => onChange(option.value)}
           onBlur={onBlur}
           name={name}
+          defaultValue={defaultValue}
         />
       </div>
     )}
