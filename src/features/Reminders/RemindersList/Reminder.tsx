@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { format } from 'date-fns';
 import { ReactComponent as Edit } from 'icons/Edit.svg';
 import { ReactComponent as Remove } from 'icons/Remove.svg';
@@ -99,7 +100,11 @@ const Reminder = ({ toggleModal, index, ...reminder }: Reminder & OwnProps) => {
   };
 
   const handleReminderDelete = () => {
-    dispatch(deleteReminderRequest(_id));
+    dispatch<any>(deleteReminderRequest(_id)).then(({ error }: any) => {
+      if (error) return toast.error(error.data.message);
+
+      toast.success(`Successfully deleted reminder!`);
+    });
   };
 
   return (

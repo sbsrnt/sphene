@@ -1,7 +1,11 @@
 import PATHS from '../../../src/constants/paths';
 import { RemindersPage } from '../../pages';
 import { cleanupAndSeedData, isUrl, signIn, signOut } from '../../support';
-import { fillReminderForm, initReminderCreation, testReminder } from './helpers';
+import {
+  fillReminderForm,
+  initReminderCreation,
+  testReminder,
+} from '../../support/reminder-helpers';
 
 describe('Create Reminder', () => {
   const remindersPage = new RemindersPage();
@@ -156,11 +160,11 @@ describe('Create Reminder', () => {
     initReminderCreation(remindersPage);
     remindersPage.buttonCreateReminderEventType.click();
     fillReminderForm({ remindersPage, createAnotherReminder: true });
+    remindersPage.buttonCreateReminderPaymentType.click();
     remindersPage.inputTitle.should('have.value', '');
     remindersPage.inputDescription.should('have.value', '');
     remindersPage.inputRemindAt.should('have.value', '');
     remindersPage.inputRemindOn.should('have.value', '');
-
     fillReminderForm({ remindersPage });
   });
 });

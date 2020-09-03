@@ -1,6 +1,6 @@
 import { RemindersPage } from '../../pages';
 import { cleanupAndSeedData, signIn, signOut } from '../../support';
-import { fillReminderForm, initReminderUpdate, testReminder } from './helpers';
+import { fillReminderForm, initReminderUpdate, testReminder } from '../../support/reminder-helpers';
 
 describe('Update Reminder', () => {
   const remindersPage = new RemindersPage();

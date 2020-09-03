@@ -1,4 +1,4 @@
-import { RemindersPage } from '../../pages';
+import { RemindersPage } from '../pages';
 
 export const initReminderCreation = (remindersPage: RemindersPage) => {
   remindersPage.buttonNewReminder.click();
