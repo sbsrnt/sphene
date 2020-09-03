@@ -21,6 +21,11 @@ export type Reminder = {
   title: string;
 };
 
+export type OwnProps = {
+  index: number;
+  toggleModal: () => void;
+};
+
 const StyledReminder = styled((props) => <Card {...props} />)`
   width: 300px;
   height: 200px;
@@ -80,10 +85,10 @@ const StyledReminderDetails = styled.div<{ isDeleting: boolean }>`
   opacity: ${(props) => (props.isDeleting ? 0.5 : 1)};
 `;
 
-const Reminder = ({ toggleModal, ...reminder }: Reminder & { toggleModal: () => void }) => {
+const Reminder = ({ toggleModal, index, ...reminder }: Reminder & OwnProps) => {
   const dispatch = useDispatch();
   const deletingId = useSelector(getRemindersDeletingStatusSelector);
-  const { _id, remindAt, occurrence, description, title } = reminder;
+  const { _id, remindAt, occurrence, description, title, type } = reminder;
   const date = new Date(remindAt);
   const formattedRemindAt = format(date, 'do MMM');
   const formattedRemindOn = format(date, 'HH:mm');
@@ -99,7 +104,7 @@ const Reminder = ({ toggleModal, ...reminder }: Reminder & { toggleModal: () => 
 
   return (
     <StyledReminder>
-      <StyledReminderDetails isDeleting={deletingId === _id}>
+      <StyledReminderDetails isDeleting={deletingId === _id} data-cy={`reminder-${index}`}>
         <Row>
           <Column>
             <Header as="h3">{title}</Header>
@@ -121,17 +126,20 @@ const Reminder = ({ toggleModal, ...reminder }: Reminder & { toggleModal: () => 
         <Row>
           <Column>
             <Sublabel>
-              Occurr <StyledDate>{occurrence}</StyledDate>
+              Occurr <StyledDate>{type}</StyledDate> <StyledDate>{occurrence}</StyledDate>
             </Sublabel>
           </Column>
         </Row>
       </StyledReminderDetails>
       <StyledReminderActions className="reminder-actions">
         <div>
-          <StyledEdit onClick={() => handleReminderEdit(reminder)} />
+          <StyledEdit
+            onClick={() => handleReminderEdit(reminder)}
+            data-cy={`button-updateReminder-${index}`}
+          />
         </div>
         <div>
-          <StyledRemove onClick={handleReminderDelete} />
+          <StyledRemove onClick={handleReminderDelete} data-cy={`button-deleteReminder-${index}`} />
         </div>
       </StyledReminderActions>
     </StyledReminder>

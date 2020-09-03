@@ -35,9 +35,9 @@ const RemindersList = ({ toggleModal }: RemindersList) => {
       {isError && <Body>Something went wrong with fetching reminders.</Body>}
       {!isLoading && reminders.length > 0 && (
         <StyledRemindersList data-cy="list-reminders">
-          {reminders.map((reminder) => (
+          {reminders.map((reminder, i) => (
             <AnimatedList.Item key={reminder._id}>
-              <Reminder toggleModal={toggleModal} {...reminder} />
+              <Reminder toggleModal={toggleModal} index={i} {...reminder} />
             </AnimatedList.Item>
           ))}
         </StyledRemindersList>

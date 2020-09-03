@@ -11,7 +11,7 @@ const StyledReminderTypes = styled(AnimatedList)`
 `;
 
 const FirstStep = ({ setActiveStep, setActiveReminder, toggleModal }: any) => {
-  const handleReminderClick = (reminder: any) => {
+  const handleReminderTypeClick = (reminder: any) => {
     setActiveReminder(reminder);
     setActiveStep(2);
   };
@@ -23,7 +23,7 @@ const FirstStep = ({ setActiveStep, setActiveReminder, toggleModal }: any) => {
           {supportedReminderTypes.map((reminder) => (
             <AnimatedList.Item key={reminder.reminderType} animation="fromTop">
               <Button
-                onClick={() => handleReminderClick(reminder)}
+                onClick={() => handleReminderTypeClick(reminder)}
                 dataId={`button-${reminder.reminderType}`}
               >
                 {reminder.reminderType}

@@ -6,7 +6,11 @@ import styled from 'styled-components';
 import { occurrenceParser } from 'utils/occurrenceParser';
 
 import { Button, Checkbox, Modal } from 'components';
-import { createReminderRequest, updateReminderRequest } from 'features/Reminders/actions';
+import {
+  createReminderRequest,
+  setActiveReminder,
+  updateReminderRequest,
+} from 'features/Reminders/actions';
 import {
   getActiveReminderSelector,
   getFormActiveReminderSelector,
@@ -61,7 +65,6 @@ const SecondStep = ({ setActiveStep, toggleModal, reminderValue, children }: any
 
   const handleCancelClick = () => {
     toggleModal();
-    setActiveStep(1);
   };
 
   const onSubmit = ({ remindAt, remindOn, occurrence, ...data }: any) => {
@@ -79,8 +82,12 @@ const SecondStep = ({ setActiveStep, toggleModal, reminderValue, children }: any
     const followUp = ({ error }: any) => {
       if (error) return toast.error(error.data.message);
 
-      toast.success('Successfully created reminder!');
-      isCreateNewReminderToggled && reset();
+      toast.success(`Successfully ${activeReminder ? 'updated' : 'created'} reminder!`);
+
+      if (isCreateNewReminderToggled) {
+        dispatch(setActiveReminder(null));
+        reset();
+      }
       !isCreateNewReminderToggled && toggleModal();
     };
 

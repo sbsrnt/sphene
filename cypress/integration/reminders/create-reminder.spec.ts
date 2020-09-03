@@ -1,44 +1,7 @@
 import PATHS from '../../../src/constants/paths';
 import { RemindersPage } from '../../pages';
 import { cleanupAndSeedData, isUrl, signIn, signOut } from '../../support';
-
-const initReminderCreation = (remindersPage: RemindersPage) => {
-  remindersPage.buttonNewReminder.click();
-  cy.contains('Create New Reminder');
-  cy.contains('Step 1 / 2');
-};
-
-const testReminder = (occurrence: string = 'daily') => {
-  cy.contains('test title');
-  cy.contains('test description');
-  cy.contains('1st May');
-  cy.contains('10:30');
-  cy.contains(`Occurr ${occurrence}`);
-};
-
-const fillReminderForm = ({
-  remindersPage,
-  occurrenceId = 0,
-  withDescription = true,
-  createAnotherReminder = false,
-}: {
-  remindersPage: RemindersPage;
-  expectedReminders?: number;
-  occurrenceId?: number;
-  withDescription?: boolean;
-  createAnotherReminder?: boolean;
-}) => {
-  cy.contains('Step 2 / 2');
-  remindersPage.inputTitle.type('test title');
-  withDescription && remindersPage.inputDescription.type('test description');
-  remindersPage.inputRemindAt.type('2020-05-01');
-  remindersPage.inputRemindOn.type('10:30');
-  remindersPage.inputOccurrence.click();
-  remindersPage.selectOccurrence(occurrenceId);
-  createAnotherReminder && remindersPage.checkboxCreateNewReminder.click();
-  remindersPage.buttonCreateReminderSubmit.click();
-  cy.contains('Successfully created reminder!');
-};
+import { fillReminderForm, initReminderCreation, testReminder } from './helpers';
 
 describe('Create Reminder', () => {
   const remindersPage = new RemindersPage();
@@ -97,6 +60,7 @@ describe('Create Reminder', () => {
     remindersPage.buttonCreateReminderPaymentType.click();
     fillReminderForm({ remindersPage });
     remindersPage.listReminders.children().should('have.length', 6);
+    cy.contains('Successfully created reminder!');
     testReminder();
   });
 

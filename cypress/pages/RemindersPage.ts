@@ -9,6 +9,10 @@ class RemindersPage extends Page {
     return cy.getId('list-reminders');
   }
 
+  public reminderTile(index: number) {
+    return cy.getId(`reminder-${index}`);
+  }
+
   /**
    * Create / Update Reminder
    */
@@ -18,6 +22,14 @@ class RemindersPage extends Page {
 
   public get modalCreateNewReminder() {
     return cy.getId('modal-createNewReminder');
+  }
+
+  public buttonUpdateReminder(index: number) {
+    return cy.getId(`button-updateReminder-${index}`);
+  }
+
+  public buttonDeleteReminder(index: number) {
+    return cy.getId(`button-deleteReminder-${index}`);
   }
 
   // First step
