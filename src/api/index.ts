@@ -13,3 +13,4 @@ export const getVerifyEmail = (token: string | {}) => `${DOMAIN}/auth/verify/${t
  */
 export const allReminders = () => `${DOMAIN}/reminders`;
 export const getReminder = (reminderId: string) => `${DOMAIN}/reminders/${reminderId}`;
+export const getUpcomingReminders = () => `${DOMAIN}/reminders/upcoming`;

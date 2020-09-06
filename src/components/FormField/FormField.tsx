@@ -17,6 +17,7 @@ type FormField = {
   options?: any[];
   animated?: boolean;
   disabled?: boolean;
+  step?: number;
   defaultValue?: {
     label: string | number;
     value: string | number;

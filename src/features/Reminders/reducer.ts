@@ -7,6 +7,7 @@ import {
   CREATE_REMINDER,
   DELETE_REMINDER,
   GET_ALL_REMINDERS,
+  GET_UPCOMING_REMINDERS,
   SET_ACTIVE_REMINDER,
   UPDATE_REMINDER,
 } from './constants';
@@ -15,17 +16,21 @@ import { Reminder } from './RemindersList/Reminder';
 export type CreateReminderState = {
   isLoading: boolean;
   isCreating: boolean;
+  isUpcomingLoading: boolean;
   deletingId: string | null;
   reminders: Reminder[];
   activeReminder: Reminder | null;
   error?: APIError;
+  upcomingReminders: Reminder[];
 };
 
 const initialState = {
   isLoading: false,
   isCreating: false,
+  isUpcomingLoading: false,
   deletingId: null,
   reminders: [],
+  upcomingReminders: [],
 };
 
 const ReminderReducer: Reducer = (state = initialState, { type, payload, error }) => {
@@ -119,7 +124,6 @@ const ReminderReducer: Reducer = (state = initialState, { type, payload, error }
     }
 
     case DELETE_REMINDER: {
-      console.log(payload);
       return {
         ...state,
         isDeleting: payload._id,
@@ -143,6 +147,29 @@ const ReminderReducer: Reducer = (state = initialState, { type, payload, error }
         ...state,
         ...apiErrorBinder(error),
         isDeleting: null,
+      };
+    }
+
+    case GET_UPCOMING_REMINDERS: {
+      return {
+        ...state,
+        isUpcomingLoading: true,
+      };
+    }
+
+    case success(GET_UPCOMING_REMINDERS): {
+      return {
+        ...state,
+        upcomingReminders: payload || [],
+        isUpcomingLoading: false,
+      };
+    }
+
+    case failure(GET_UPCOMING_REMINDERS): {
+      return {
+        ...state,
+        upcomingReminders: [],
+        isUpcomingLoading: false,
       };
     }
 

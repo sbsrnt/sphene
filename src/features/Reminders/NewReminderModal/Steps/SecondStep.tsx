@@ -8,6 +8,7 @@ import { occurrenceParser } from 'utils/occurrenceParser';
 import { Button, Checkbox, Modal } from 'components';
 import {
   createReminderRequest,
+  getUpcomingRemindersRequest,
   setActiveReminder,
   updateReminderRequest,
 } from 'features/Reminders/actions';
@@ -91,11 +92,12 @@ const SecondStep = ({ setActiveStep, toggleModal, reminderValue, children }: any
       !isCreateNewReminderToggled && toggleModal();
     };
 
-    if (activeReminder)
+    if (activeReminder) {
       dispatch<any>(updateReminderRequest({ _id: activeReminder._id, ...preparedData })).then(
         followUp
       );
-    else dispatch<any>(createReminderRequest(preparedData)).then(followUp);
+      dispatch(getUpcomingRemindersRequest());
+    } else dispatch<any>(createReminderRequest(preparedData)).then(followUp);
   };
 
   return (

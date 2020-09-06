@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { isEmpty } from 'lodash';
 
 import { getUserSelector } from 'features/Auth/selectors';
 import { signInUserSuccess } from 'features/Auth/SignIn/actions';
 
-export const AuthContext = React.createContext({
+export const AuthContext = createContext({
   isLoading: false,
   isAuthenticated: false,
 });

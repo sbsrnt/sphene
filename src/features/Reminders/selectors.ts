@@ -15,6 +15,11 @@ export const getRemindersSelector = createSelector(
   (state: CreateReminderState) => state.reminders
 );
 
+export const getUpcomingRemindersSelector = createSelector(
+  remindersSelector,
+  (state: CreateReminderState) => state.upcomingReminders
+);
+
 export const getActiveReminderSelector = createSelector(
   remindersSelector,
   (state: CreateReminderState) => state.activeReminder

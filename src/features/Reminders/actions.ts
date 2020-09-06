@@ -1,16 +1,20 @@
 import { failure, success } from 'utils/actionHelpers';
 
-import { allReminders, getReminder } from 'api';
+import { allReminders, getReminder, getUpcomingReminders } from 'api';
 
 import {
   CREATE_REMINDER,
   DELETE_REMINDER,
   GET_ALL_REMINDERS,
+  GET_UPCOMING_REMINDERS,
   SET_ACTIVE_REMINDER,
   UPDATE_REMINDER,
 } from './constants';
 import { Reminder } from './RemindersList/Reminder';
 
+/**
+ * Get
+ */
 export function getAllRemindersRequest() {
   return {
     type: GET_ALL_REMINDERS,
@@ -37,13 +41,9 @@ export function getAllRemindersFailure(error: any) {
   };
 }
 
-export function setActiveReminder(payload: Reminder | null) {
-  return {
-    type: SET_ACTIVE_REMINDER,
-    payload,
-  };
-}
-
+/**
+ * Create
+ */
 export function createReminderRequest(data: any) {
   return {
     type: CREATE_REMINDER,
@@ -71,6 +71,9 @@ export function createReminderFailure(error: any) {
   };
 }
 
+/**
+ * Update
+ */
 export function updateReminderRequest(data: any) {
   return {
     type: UPDATE_REMINDER,
@@ -98,6 +101,9 @@ export function updateReminderFailure(error: any) {
   };
 }
 
+/**
+ * Delete
+ */
 export function deleteReminderRequest(_id: any) {
   return {
     type: DELETE_REMINDER,
@@ -122,5 +128,37 @@ export function deleteReminderFailure(error: any) {
   return {
     type: failure(UPDATE_REMINDER),
     error,
+  };
+}
+
+/**
+ * Upcoming
+ */
+export function getUpcomingRemindersRequest() {
+  return {
+    type: GET_UPCOMING_REMINDERS,
+    payload: {
+      request: {
+        url: getUpcomingReminders(),
+        method: 'GET',
+      },
+    },
+  };
+}
+
+export function getUpcomingReminderSuccess(payload: Reminder[] | []) {
+  return {
+    type: success(GET_UPCOMING_REMINDERS),
+    payload,
+  };
+}
+
+/**
+ * Misc
+ */
+export function setActiveReminder(payload: Reminder | null) {
+  return {
+    type: SET_ACTIVE_REMINDER,
+    payload,
   };
 }
