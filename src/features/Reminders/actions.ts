@@ -6,6 +6,7 @@ import {
   CREATE_REMINDER,
   DELETE_REMINDER,
   GET_ALL_REMINDERS,
+  GET_SINGLE_REMINDER,
   GET_UPCOMING_REMINDERS,
   SET_ACTIVE_REMINDER,
   UPDATE_REMINDER,
@@ -13,7 +14,7 @@ import {
 import { Reminder } from './RemindersList/Reminder';
 
 /**
- * Get
+ * Get All
  */
 export function getAllRemindersRequest() {
   return {
@@ -37,6 +38,35 @@ export function getAllRemindersSuccess(payload: any) {
 export function getAllRemindersFailure(error: any) {
   return {
     type: failure(GET_ALL_REMINDERS),
+    error,
+  };
+}
+
+/**
+ * Get single
+ */
+export function getSingleReminderRequest(id: string) {
+  return {
+    type: GET_SINGLE_REMINDER,
+    payload: {
+      request: {
+        url: getReminder(id),
+        method: 'GET',
+      },
+    },
+  };
+}
+
+export function getSingleRemindersSuccess(payload: any) {
+  return {
+    type: success(GET_SINGLE_REMINDER),
+    payload,
+  };
+}
+
+export function getSingleRemindersFailure(error: any) {
+  return {
+    type: failure(GET_SINGLE_REMINDER),
     error,
   };
 }

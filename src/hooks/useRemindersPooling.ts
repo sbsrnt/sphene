@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { differenceInMilliseconds } from 'date-fns';
+import systemNotification from 'utils/systemNotification';
 
-import { getUpcomingRemindersRequest } from 'features/Reminders/actions';
+import { getSingleReminderRequest, getUpcomingRemindersRequest } from 'features/Reminders/actions';
 import { Reminder } from 'features/Reminders/RemindersList/Reminder';
 import { getRemindersSelector, getUpcomingRemindersSelector } from 'features/Reminders/selectors';
 
@@ -32,22 +33,13 @@ const useRemindersPooling = () => {
     upcomingReminders.forEach(async ({ _id, remindAt, ...reminder }: Reminder) => {
       const triggerTime = await differenceInMilliseconds(new Date(remindAt), new Date());
       const timeoutId = await window.setTimeout(() => {
-        triggerSystemNotification(reminder);
+        systemNotification({ title: reminder.title, body: reminder.description });
+        dispatch(getSingleReminderRequest(_id));
       }, triggerTime);
-      await timeoutIds.push(timeoutId);
+      // await timeoutIds.push(timeoutId);
     });
     return timeoutIds.forEach((timeoutId) => clearTimeout(timeoutId));
   }, [countUpcomingReminders]);
-
-  const triggerSystemNotification = (reminder: Partial<Reminder>) => {
-    const s = new Notification('XD', {
-      body: 'TEST',
-      requireInteraction: true,
-    });
-    console.log(s);
-    // s.onclick = () => ipcRenderer.send('notify', (e: any) => console.log(e));
-    s.onclick = () => window.shellOpenExternal('https://google.com');
-  };
 };
 
 export default useRemindersPooling;

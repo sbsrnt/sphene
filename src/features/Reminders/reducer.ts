@@ -7,6 +7,7 @@ import {
   CREATE_REMINDER,
   DELETE_REMINDER,
   GET_ALL_REMINDERS,
+  GET_SINGLE_REMINDER,
   GET_UPCOMING_REMINDERS,
   SET_ACTIVE_REMINDER,
   UPDATE_REMINDER,
@@ -35,6 +36,9 @@ const initialState = {
 
 const ReminderReducer: Reducer = (state = initialState, { type, payload, error }) => {
   switch (type) {
+    /**
+     * Get All
+     */
     case GET_ALL_REMINDERS: {
       return {
         ...state,
@@ -58,6 +62,40 @@ const ReminderReducer: Reducer = (state = initialState, { type, payload, error }
       };
     }
 
+    /**
+     * Get single
+     */
+    case GET_SINGLE_REMINDER: {
+      return {
+        ...state,
+      };
+    }
+
+    case success(GET_SINGLE_REMINDER): {
+      const updatedReminders = state.reminders.map((reminder: Reminder) => {
+        if (reminder._id !== payload._id) {
+          return reminder;
+        }
+
+        return {
+          ...reminder,
+          ...payload,
+        };
+      });
+
+      return {
+        ...state,
+        reminders: updatedReminders,
+      };
+    }
+
+    case failure(GET_SINGLE_REMINDER): {
+      return {
+        ...state,
+        ...apiErrorBinder(error),
+      };
+    }
+
     case SET_ACTIVE_REMINDER: {
       return {
         ...state,
@@ -65,6 +103,9 @@ const ReminderReducer: Reducer = (state = initialState, { type, payload, error }
       };
     }
 
+    /**
+     * Create
+     */
     case CREATE_REMINDER: {
       return {
         ...state,
@@ -168,7 +209,6 @@ const ReminderReducer: Reducer = (state = initialState, { type, payload, error }
     case failure(GET_UPCOMING_REMINDERS): {
       return {
         ...state,
-        upcomingReminders: [],
         isUpcomingLoading: false,
       };
     }

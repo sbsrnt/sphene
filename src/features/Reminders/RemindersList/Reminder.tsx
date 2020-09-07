@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { format } from 'date-fns';
 import { ReactComponent as Edit } from 'icons/Edit.svg';
+import { ReactComponent as NotificationPreview } from 'icons/NotificationPreview.svg';
 import { ReactComponent as Remove } from 'icons/Remove.svg';
 import styled from 'styled-components';
 
 import { Body, Card, Column, Header, Row, Sublabel } from 'components';
 
+import systemNotification from '../../../utils/systemNotification';
 import { deleteReminderRequest, setActiveReminder } from '../actions';
 import { getRemindersDeletingStatusSelector } from '../selectors';
 
@@ -42,12 +44,12 @@ const StyledDate = styled.span`
 
 const StyledReminderActions = styled.div`
   padding-left: 1em;
-  border-left: 1px solid ${(props) => props.theme.colors.gray700};
+  border-left: 1px solid ${(props) => props.theme.colors.gray800};
 
   div {
     margin-bottom: 0.5em;
     padding-bottom: 0.5em;
-    border-bottom: 1px solid ${(props) => props.theme.colors.gray700};
+    border-bottom: 1px solid ${(props) => props.theme.colors.gray800};
 
     svg {
       width: 30px;
@@ -55,7 +57,7 @@ const StyledReminderActions = styled.div`
       cursor: pointer;
 
       path {
-        stroke: ${(props) => props.theme.colors.gray700};
+        stroke: ${(props) => props.theme.colors.gray800};
       }
     }
 
@@ -82,6 +84,14 @@ const StyledRemove = styled(Remove)`
   }
 `;
 
+const StyledNotificationPreview = styled(NotificationPreview)`
+  :hover {
+    path {
+      stroke: ${(props) => props.theme.colors.blue500};
+    }
+  }
+`;
+
 const StyledReminderDetails = styled.div<{ isDeleting: boolean }>`
   opacity: ${(props) => (props.isDeleting ? 0.5 : 1)};
 `;
@@ -94,7 +104,7 @@ const Reminder = ({ toggleModal, index, ...reminder }: Reminder & OwnProps) => {
   const formattedRemindAt = format(date, 'do MMM');
   const formattedRemindOn = format(date, 'HH:mm');
 
-  const handleReminderEdit = (reminder: Reminder) => {
+  const handleReminderEdit = () => {
     dispatch(setActiveReminder(reminder));
     toggleModal();
   };
@@ -106,6 +116,9 @@ const Reminder = ({ toggleModal, index, ...reminder }: Reminder & OwnProps) => {
       toast.success(`Successfully deleted reminder!`);
     });
   };
+
+  const handleNotificationPreview = () =>
+    systemNotification({ title: reminder.title, body: reminder.description });
 
   return (
     <StyledReminder>
@@ -138,13 +151,13 @@ const Reminder = ({ toggleModal, index, ...reminder }: Reminder & OwnProps) => {
       </StyledReminderDetails>
       <StyledReminderActions className="reminder-actions">
         <div>
-          <StyledEdit
-            onClick={() => handleReminderEdit(reminder)}
-            data-cy={`button-updateReminder-${index}`}
-          />
+          <StyledEdit onClick={handleReminderEdit} data-cy={`button-updateReminder-${index}`} />
         </div>
         <div>
           <StyledRemove onClick={handleReminderDelete} data-cy={`button-deleteReminder-${index}`} />
+        </div>
+        <div>
+          <StyledNotificationPreview onClick={handleNotificationPreview} />
         </div>
       </StyledReminderActions>
     </StyledReminder>
