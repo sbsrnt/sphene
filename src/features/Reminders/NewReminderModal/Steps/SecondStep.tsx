@@ -5,7 +5,17 @@ import { toast } from 'react-toastify';
 import styled from 'styled-components';
 import { occurrenceParser } from 'utils/occurrenceParser';
 
-import { Button, Checkbox, Modal } from 'components';
+import {
+  Button,
+  Card,
+  Checkbox,
+  Column,
+  FormField,
+  Input,
+  Modal,
+  Row,
+  TimePicker,
+} from 'components';
 import {
   createReminderRequest,
   getUpcomingRemindersRequest,
@@ -17,6 +27,8 @@ import {
   getFormActiveReminderSelector,
   getRemindersCreatingStatusSelector,
 } from 'features/Reminders/selectors';
+
+import Checklist from '../Checklist/Checklist';
 
 const StyledActions = styled.div`
   display: flex;
@@ -34,7 +46,10 @@ const StyledActions = styled.div`
 const StyledLabelWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 1em;
+
+  &:first-child {
+    margin-bottom: 0.5em;
+  }
 
   label {
     margin-left: 0.5em;
@@ -55,6 +70,7 @@ const SecondStep = ({ setActiveStep, toggleModal, reminderValue, children }: any
   const defaultValues = useSelector(getFormActiveReminderSelector);
   const activeReminder = useSelector(getActiveReminderSelector);
   const isCreating = useSelector(getRemindersCreatingStatusSelector);
+  const [hasChecklist, setHasChecklist] = useState(true);
   const [isCreateNewReminderToggled, setIsCreateNewReminderToggled] = useState(false);
   const { control, handleSubmit, register, errors, reset } = useForm({ defaultValues });
 
@@ -62,21 +78,30 @@ const SecondStep = ({ setActiveStep, toggleModal, reminderValue, children }: any
     setIsCreateNewReminderToggled((toggled) => !toggled);
   };
 
+  const handleAddChecklistClick = () => setHasChecklist((hasChecklist) => !hasChecklist);
+
   const handleGoBackClick = () => setActiveStep(1);
 
   const handleCancelClick = () => {
     toggleModal();
   };
 
-  const onSubmit = ({ remindAt, remindOn, occurrence, ...data }: any) => {
+  const onSubmit = ({ remindAt, remindOn, occurrence, item_0, item_1, item_2, ...data }: any) => {
     const formattedRemindAt = new Date(`${remindAt}T${remindOn}:00`);
     const parsedOccurrence =
       typeof occurrence === 'string' ? occurrenceParser(occurrence)?.value : occurrence;
+
+    const checklist = {
+      item_0,
+      item_1,
+      item_2,
+    };
 
     const preparedData = {
       type: reminderValue,
       remindAt: formattedRemindAt,
       occurrence: parsedOccurrence,
+      ...(hasChecklist && { checklist }),
       ...data,
     };
 
@@ -111,6 +136,22 @@ const SecondStep = ({ setActiveStep, toggleModal, reminderValue, children }: any
             disabled: isCreating,
             defaultValues,
           })}
+          <Row>
+            <Column>
+              <StyledLabelWrapper>
+                <Checkbox
+                  id="add-checklist"
+                  checked={hasChecklist}
+                  onChange={handleAddChecklistClick}
+                  dataId="checkbox-addChecklist"
+                />
+                <label htmlFor="add-checklist">Add checklist?</label>
+              </StyledLabelWrapper>
+              {hasChecklist && (
+                <Checklist register={register} errors={errors} disabled={isCreating} />
+              )}
+            </Column>
+          </Row>
         </Form>
         <StyledLabelWrapper>
           <Checkbox

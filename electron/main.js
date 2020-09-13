@@ -11,6 +11,7 @@ const contextMenu = require('electron-context-menu');
 function createWindow() {
   const mainWindow = new BrowserWindow({
     width: 1800,
+    minWidth: 1180,
     height: 900,
     frame: false,
     backgroundColor: '#212121',
@@ -46,6 +47,8 @@ function createWindow() {
     // 'build/index.html'
     mainWindow.loadURL(`file://${__dirname}/../index.html`);
   }
+
+  require('update-electron-app')();
 }
 
 app.whenReady().then(createWindow);

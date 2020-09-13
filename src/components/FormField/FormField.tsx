@@ -22,6 +22,7 @@ type FormField = {
     label: string | number;
     value: string | number;
   };
+  hasLabel?: boolean;
 };
 
 const Field = styled.div`
@@ -53,14 +54,17 @@ const FormField = ({
   required,
   dataId,
   animated = false,
+  hasLabel = true,
   ...props
 }: FormField) => {
   const Tag = animated ? StyledItem : Field;
   return (
     <Tag animation="fromTop">
-      <Label htmlFor={name} data-cy={`label-${dataId}`}>
-        {startCase(name)} {required && '*'}
-      </Label>
+      {hasLabel && (
+        <Label htmlFor={name} data-cy={`label-${dataId}`}>
+          {startCase(name)} {required && '*'}
+        </Label>
+      )}
       <T
         id={name}
         name={name}
